@@ -38,7 +38,7 @@ import { SharedService } from './shared/services/shared.service';
     AppRoutingModule,
     NgbModule.forRoot(),
     BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),DatepickerModule.forRoot(),LaddaModule,TooltipModule,
+    TabsModule.forRoot(),LaddaModule,TooltipModule,
     ChartsModule,HttpModule,FormsModule,
   ],
   declarations: [
