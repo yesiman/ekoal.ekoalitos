@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ng2-bootstrap/dropdown';
 
 import { TooltipModule } from 'ng2-bootstrap/tooltip';
+import { DatepickerModule } from 'ng2-bootstrap/datePicker';
 
 
 
@@ -38,7 +39,7 @@ import { SharedService } from './shared/services/shared.service';
     AppRoutingModule,
     NgbModule.forRoot(),
     BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),LaddaModule,TooltipModule,
+    TabsModule.forRoot(),DatepickerModule.forRoot(),LaddaModule,TooltipModule,
     ChartsModule,HttpModule,FormsModule,
   ],
   declarations: [
@@ -50,7 +51,7 @@ import { SharedService } from './shared/services/shared.service';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    MenuGroupComponent,
+    MenuGroupComponent
   ],
   providers: [{
     provide: LocationStrategy,

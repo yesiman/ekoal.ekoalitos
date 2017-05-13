@@ -1,6 +1,10 @@
 <div class="form-group row">
-  <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+  <label class="col-md-3 form-control-label" for="textarea-input">Boolean</label>
   <div class="col-md-9">
-    <textarea id="textarea-input" name="textarea-input" (ngModelChange)="inputValueChange($event)" [(ngModel)]="value" rows="9" class="form-control" placeholder="Content.."></textarea>
+    <label class="switch switch-text switch-primary-outline">
+      <input type="checkbox" class="switch-input"  (ngModelChange)="inputValueChange($event)" [(ngModel)]="value">
+      <span class="switch-label" data-on="Oui" data-off="Non"></span>
+      <span class="switch-handle"></span>
+    </label>
   </div>
 </div>

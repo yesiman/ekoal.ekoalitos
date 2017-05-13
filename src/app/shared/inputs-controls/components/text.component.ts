@@ -1,5 +1,7 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 
+
+
 @Component({
   selector: 'textinputcomponent',
   templateUrl: 'text.component.html',

@@ -1,6 +1,12 @@
 <div class="form-group row">
-  <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+  <label class="col-md-3 form-control-label" for="textarea-input">Date</label>
   <div class="col-md-9">
-    <textarea id="textarea-input" name="textarea-input" (ngModelChange)="inputValueChange($event)" [(ngModel)]="value" rows="9" class="form-control" placeholder="Content.."></textarea>
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-addon" (click)="d.toggle()" >
+        <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+      </div>
+    </div>
   </div>
 </div>

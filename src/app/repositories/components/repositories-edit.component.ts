@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
+
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/fromPromise';
+
 import { ReposService } from '../services/repositories.service';
+import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   templateUrl: 'repositories-edit.component.html',
@@ -14,7 +20,7 @@ export class ReposEditComponent implements OnInit {
   saving:boolean = false;
   test:String;
 
-  constructor(private reposService:ReposService,private router: Router) {
+  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService) {
     this.item = { lib: "jklkm"};
   }
 
@@ -27,12 +33,73 @@ export class ReposEditComponent implements OnInit {
   {
     this.saving = false;
   }
+
+  private s3SignOk(data,file)
+  {
+    console.log("file",file);
+    console.log("data",data);
+     this.upload(file,data.signedRequest,"");
+  }
+
   private inpValueChange(value)
   {
-    this.item.lib = value;
+    console.log("Files",value);
+    this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
+      .subscribe(
+          data  => this.s3SignOk(data,value[0]),
+          error => console.log(error));
   }
+    
+  upload(file, signedRequest, url) {
+      return Observable.fromPromise(new Promise((resolve, reject) => {
+          let xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                      resolve({ok:true})
+                  } else {
+                      reject({ok:false})
+                  }
+              }
+          }
+          xhr.upload.onprogress = (event) => {
+            console.log(Math.round(event.loaded / event.total * 100))
+            
+            //this.progress = Math.round(event.loaded / event.total * 100);
+
+            //this.progressObserver.next(this.progress);
+          };
+          xhr.open("PUT", signedRequest);
+          xhr.send(file);
+      }));
+  }
+
+  makeFileRequest(url: string, files: Array<File>) {
+      return Observable.fromPromise(new Promise((resolve, reject) => {
+          let formData: any = new FormData()
+          let xhr = new XMLHttpRequest()
+          for (let file of files) {
+            console.log(file.name);
+              formData.append("uploads[]", file, file.name)
+          }
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                      resolve(JSON.parse(xhr.response))
+                  } else {
+                      reject(xhr.response)
+                  }
+              }
+          }
+          xhr.open("POST", url, true)
+          xhr.setRequestHeader("x-access-token",this.sharedService.user.token);
+          xhr.send(formData)
+      }));
+  }
+
   valid(){
-    console.log(this.item);
+    //this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3",null);
+    //console.log(this.item);
     this.saving = true;
     this.reposService.add(this.params.repoName, this.item)
       .subscribe(

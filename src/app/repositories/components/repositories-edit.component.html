@@ -19,10 +19,18 @@
                   <form class="form-horizontal">
                     
                     
-                    <textinputcomponent [value]="item.lib" (valueChange)="inpValueChange($event)"></textinputcomponent>
-                    <longtextinputcomponent [value]="item.resume" (valueChange)="inpValueChange($event)"></longtextinputcomponent>
-
-
+                    <timeinputcomponent [value]="item.time" (valueChange)="inpValueChange($event)"></timeinputcomponent>
+                    <hr>
+                    <booleaninputcomponent [value]="item.bool" (valueChange)="inpValueChange($event)"></booleaninputcomponent>
+                    <hr>
+                    <dateinputcomponent [value]="item.date" (valueChange)="inpValueChange($event)"></dateinputcomponent>
+                    <hr>
+                    <textinputcomponent [value]="item.text" (valueChange)="inpValueChange($event)"></textinputcomponent>
+                    <hr>
+                    <longtextinputcomponent [value]="item.ltext" (valueChange)="inpValueChange($event)"></longtextinputcomponent>
+                    <hr>
+                    <fileinputcomponent  (valueChange)="inpValueChange($event)"></fileinputcomponent>
+                    <hr>
 
                     <div class="form-actions">
                       <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
