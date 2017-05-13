@@ -8,11 +8,12 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 })
 export class TextInputComponent {
   @Input() value: string;
-  @Output() valueChange = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<Object>();
+  @Input() model: string;
 
-  private inputValueChange()
+  private inputValueChange(event)
   {
-    this.valueChange.emit(this.value);
+    this.valueChange.emit({ value:this.value, model:this.model});
   }
   constructor() {
     

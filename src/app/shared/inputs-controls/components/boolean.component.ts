@@ -5,12 +5,12 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
   templateUrl: 'boolean.component.html',
 })
 export class BooleanInputComponent {
-  @Input() value: string;
-  @Output() valueChange = new EventEmitter<string>();
-
-  private inputValueChange()
+  @Input() value: boolean;
+  @Output() valueChange = new EventEmitter<Object>();
+  @Input() model: string;
+  private inputValueChange(event)
   {
-    this.valueChange.emit(this.value);
+    this.valueChange.emit({ value:event, model:this.model});
   }
   constructor() {
     

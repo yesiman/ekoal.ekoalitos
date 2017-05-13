@@ -18,20 +18,22 @@
                   
                   <form class="form-horizontal">
                     
-                    
-                    <timeinputcomponent [value]="item.time" (valueChange)="inpValueChange($event)"></timeinputcomponent>
-                    <hr>
-                    <booleaninputcomponent [value]="item.bool" (valueChange)="inpValueChange($event)"></booleaninputcomponent>
-                    <hr>
-                    <dateinputcomponent [value]="item.date" (valueChange)="inpValueChange($event)"></dateinputcomponent>
-                    <hr>
-                    <textinputcomponent [value]="item.text" (valueChange)="inpValueChange($event)"></textinputcomponent>
-                    <hr>
-                    <longtextinputcomponent [value]="item.ltext" (valueChange)="inpValueChange($event)"></longtextinputcomponent>
-                    <hr>
-                    <fileinputcomponent  (valueChange)="inpValueChange($event)"></fileinputcomponent>
-                    <hr>
-
+                    <!--START.PROPS DYNAMIC GENERATION-->
+                    <div *ngFor="let p of params.props">
+                      <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="text-input"> <i class="icon-info" ngbTooltip="{{p.tooltip}}"></i>  {{p.lib}} </label>
+                        <div class="col-md-9" [ngSwitch]="p.type">
+                          <textinputcomponent *ngSwitchCase="'text'" [model]="p.model" [value]="item.text" (valueChange)="inpValueChange($event,p.model)"></textinputcomponent>
+                          <longtextinputcomponent *ngSwitchCase="'longtext'" [model]="p.model" [value]="item.ltext" (valueChange)="inpValueChange($event,p.model)"></longtextinputcomponent>
+                          <timeinputcomponent *ngSwitchCase="'time'" [model]="p.model" [value]="item.time" (valueChange)="inpValueChange($event,p.model)"></timeinputcomponent>
+                          <booleaninputcomponent *ngSwitchCase="'boolean'" [model]="p.model" [value]="item.bool" (valueChange)="inpValueChange($event,p.model)"></booleaninputcomponent>
+                          <dateinputcomponent *ngSwitchCase="'date'" [model]="p.model" [value]="item.date" (valueChange)="inpValueChange($event,p.model)"></dateinputcomponent>
+                          <fileinputcomponent *ngSwitchCase="'file'" [model]="p.model"  (valueChange)="inpValueChange($event,p.model)"></fileinputcomponent>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                    <!--END.MENU DYNAMIC GENERATION-->
                     <div class="form-actions">
                       <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
                       <button class="btn btn-default" type="button">Cancel</button>

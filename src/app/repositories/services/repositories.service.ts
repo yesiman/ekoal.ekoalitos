@@ -30,14 +30,23 @@ export class ReposService {
           params = {
             title:"Prototypes",
             color:"",
-            repoName: "prototypes"
+            repoName: "prototypes",
+            props:[
+              {type:'text',lib:"Libellé",tooltip:"Nom du prototype",model:"lib"},
+              {type:'longtext',lib:"Description",tooltip:"Description du prototype",model:"desc"},
+            ]
           };
           break;
         case "/properties/" + repoMethod:
           params = {
             title:"Propriétés",
             color:"",
-            repoName: "properties"
+            repoName: "properties",
+            props:[
+              {type:'text',lib:"Libellé",tooltip:"",model:"lib"},
+              {type:'enum',lib:"Type de donnée",tooltip:"Type de donnée dela propriété",model:"type"},
+              {type:'longtext',lib:"Description",tooltip:"Description du prototype",model:"desc"},
+            ]
           };
           break;
         case "/objects/" + repoMethod:
@@ -58,21 +67,35 @@ export class ReposService {
           params = {
             title:"Utilisateurs",
             color:"",
-            repoName: "users"
+            repoName: "users",
+            props:[
+              {type:'text',lib:"Nom",tooltip:"",model:"name"},
+              {type:'text',lib:"Prénom",tooltip:"",model:"surname"},
+              {type:'longtext',lib:"Description",tooltip:"Description de l'utilisateur",model:"desc"},
+            ]
           };
           break;
         case "/datatypes/" + repoMethod:
           params = {
             title:"Types de données",
             color:"",
-            repoName: "datatypes"
+            repoName: "datatypes",
+            props:[
+              {type:'text',lib:"code",tooltip:"Code type de donnée",model:"code"},
+              {type:'longtext',lib:"Description",tooltip:"Description du prototype",model:"desc"},
+            ]
           };
           break;
         case "/langs/" + repoMethod:
           params = {
             title:"Languages",
             color:"",
-            repoName: "langs"
+            repoName: "langs",
+            props:[
+              {type:'text',lib:"Libellé",tooltip:"",model:"lib"},
+              {type:'text',lib:"Code",tooltip:"Code langue",model:"code"},
+              {type:'longtext',lib:"Description",tooltip:"Description du prototype",model:"desc"},
+            ]
           };
           break;
     }

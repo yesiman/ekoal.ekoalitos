@@ -43,11 +43,13 @@ export class ReposEditComponent implements OnInit {
 
   private inpValueChange(value)
   {
-    console.log("Files",value);
-    this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
-      .subscribe(
-          data  => this.s3SignOk(data,value[0]),
-          error => console.log(error));
+      this.item[value.model] = value.value;
+      console.log(this.item);
+    //console.log("Files",value);
+    //this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
+    //  .subscribe(
+    //      data  => this.s3SignOk(data,value[0]),
+    //      error => console.log(error));
   }
     
   upload(file, signedRequest, url) {

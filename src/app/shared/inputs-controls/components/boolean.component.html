@@ -1,10 +1,5 @@
-<div class="form-group row">
-  <label class="col-md-3 form-control-label" for="textarea-input">Boolean</label>
-  <div class="col-md-9">
-    <label class="switch switch-text switch-primary-outline">
-      <input type="checkbox" class="switch-input"  (ngModelChange)="inputValueChange($event)" [(ngModel)]="value">
-      <span class="switch-label" data-on="Oui" data-off="Non"></span>
-      <span class="switch-handle"></span>
-    </label>
-  </div>
-</div>
+<label class="switch switch-text switch-primary-outline">
+  <input type="checkbox" class="switch-input"  (ngModelChange)="inputValueChange($event)" [(ngModel)]="value">
+  <span class="switch-label" data-on="Oui" data-off="Non"></span>
+  <span class="switch-handle"></span>
+</label>

@@ -5,12 +5,12 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
   templateUrl: 'datetime.component.html',
 })
 export class DateTimeInputComponent {
-  @Input() value: string;
-  @Output() valueChange = new EventEmitter<string>();
-
-  private inputValueChange()
+  @Input() value: Date;
+  @Output() valueChange = new EventEmitter<Object>();
+@Input() model: string;
+  private inputValueChange(event)
   {
-    this.valueChange.emit(this.value);
+    this.valueChange.emit({ value:new Date(1999,9,9,9,9,9,9), model:this.value});
   }
   constructor() {
     

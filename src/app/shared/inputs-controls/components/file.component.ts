@@ -7,7 +7,7 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 export class FileInputComponent {
   @Input() value: string;
   @Output() valueChange = new EventEmitter<Object>();
-
+@Input() model: string;
   private inputValueChange(event)
   {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
@@ -15,7 +15,7 @@ export class FileInputComponent {
     let files: FileList = target.files;
     //this.file = files[0];
     
-    this.valueChange.emit(files);
+    this.valueChange.emit({ value:files, model:this.model});
   }
   constructor() {
     
