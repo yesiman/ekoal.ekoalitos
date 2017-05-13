@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ng2-bootstrap/dropdown';
 
 import { TooltipModule } from 'ng2-bootstrap/tooltip';
-import { DatepickerModule } from 'ng2-bootstrap/datePicker';
 
 
 

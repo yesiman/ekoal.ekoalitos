@@ -14,8 +14,6 @@ import { DateTimeInputComponent } from '../shared/inputs-controls/components/dat
 import { BooleanInputComponent } from '../shared/inputs-controls/components/boolean.component';
 import { TimeInputComponent } from '../shared/inputs-controls/components/time.component';
 
-import {DatePickerComponent} from 'ng2-bootstrap/datepicker';
-
 import { FileInputComponent } from '../shared/inputs-controls/components/file.component';
 
 import { ReposEditComponent } from './components/repositories-edit.component';
