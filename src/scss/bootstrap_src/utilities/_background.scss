@@ -17,3 +17,8 @@
 @include bg-variant('.bg-danger', $brand-danger);
 
 @include bg-variant('.bg-inverse', $brand-inverse);
+
+@include bg-variant('.bg-prototypes', $brand-prototypes);
+@include bg-variant('.bg-objects', $brand-objects);
+@include bg-variant('.bg-langs', $brand-langs);
+@include bg-variant('.bg-users', $brand-users);

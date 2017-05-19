@@ -3,10 +3,10 @@ import { Http, Response, Headers, RequestOptions }          from '@angular/http'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { SharedService } from '../../shared/services/shared.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Injectable()
-export class ReposService {
+export class ProjectsDashboardService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
   private baseUrl = 'https://ekoalit-os-srv.herokuapp.com/users/1/2';  // URL to web API
   

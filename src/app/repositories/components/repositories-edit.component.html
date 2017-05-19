@@ -17,7 +17,6 @@
                   <template tabHeading><i class="icon-screen-desktop"></i> Informations principales</template>
                   
                   <form class="form-horizontal">
-                    
                     <!--START.PROPS DYNAMIC GENERATION-->
                     <div *ngFor="let p of params.props">
                       <div class="form-group row">
@@ -29,6 +28,7 @@
                           <booleaninputcomponent *ngSwitchCase="'boolean'" [model]="p.model" [value]="item.bool" (valueChange)="inpValueChange($event,p.model)"></booleaninputcomponent>
                           <dateinputcomponent *ngSwitchCase="'date'" [model]="p.model" [value]="item.date" (valueChange)="inpValueChange($event,p.model)"></dateinputcomponent>
                           <fileinputcomponent *ngSwitchCase="'file'" [model]="p.model"  (valueChange)="inpValueChange($event,p.model)"></fileinputcomponent>
+                          <enuminputcomponent *ngSwitchCase="'enum'" [model]="p.model"  (valueChange)="inpValueChange($event,p.model)"></enuminputcomponent>
                         </div>
                       </div>
                       <hr>

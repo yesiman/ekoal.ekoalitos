@@ -18,27 +18,34 @@ export class LayoutService {
                 .map(this.extractData)
                 .catch(this.handleError);
     }
-  getStdMenuItemChilds(id,lib,icon,color,routeFNew,routeFList){
-    return {
+  getStdMenuItemChilds(id,lib,icon,color,routeFNew,routeFList,route, withChilds):any {
+    console.log(id);
+    var ret:any = {
       id:id,
       lib:lib,
       icon:icon, 
       color:color,
-      childs:[
-        {
-          id:id + "1",
-          lib:"Nouveau",
-          icon:"icon-plus",
-          route:routeFNew
-        },
-        {
-          id:id + "2",
-          lib:"Liste",
-          icon:"icon-list",
-          route:routeFList
-        }
-      ]
+      route:route
     };
+
+    if (withChilds)
+      {
+        ret.childs = [
+          {
+            id:id + "1",
+            lib:"Nouveau",
+            icon:"icon-plus",
+            route:routeFNew
+          },
+          {
+            id:id + "2",
+            lib:"Liste",
+            icon:"icon-list",
+            route:routeFList
+          }
+        ]
+      }
+      return ret;
   }
   private extractData(res: Response) {
     let body = res.json();

@@ -37,6 +37,10 @@ export const routes: Routes = [
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
+        path: 'project',
+        loadChildren: './projects/projects.module#ProjectsDashboardModule'
+      },
+      {
         path: 'properties',
         loadChildren: './repositories/repositories.module#ReposModule'
       },

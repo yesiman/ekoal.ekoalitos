@@ -16,7 +16,7 @@ const routes: Routes = [
         path: 'edit',
         component: ReposEditComponent,
         data: {
-          title: 'Buttons'
+          title: 'View'
         }
       },
       {

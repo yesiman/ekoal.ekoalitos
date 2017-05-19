@@ -13,7 +13,7 @@ import { DateInputComponent } from '../shared/inputs-controls/components/date.co
 import { DateTimeInputComponent } from '../shared/inputs-controls/components/datetime.component';
 import { BooleanInputComponent } from '../shared/inputs-controls/components/boolean.component';
 import { TimeInputComponent } from '../shared/inputs-controls/components/time.component';
-
+import { EnumInputComponent } from '../shared/inputs-controls/components/enum.component';
 import { FileInputComponent } from '../shared/inputs-controls/components/file.component';
 
 import { ReposEditComponent } from './components/repositories-edit.component';
@@ -36,6 +36,7 @@ import { ReposRoutingModule } from './repositories-routing.module';
   DateTimeInputComponent,
   BooleanInputComponent,
   TimeInputComponent,
+  EnumInputComponent,
   FileInputComponent,
   ReposEditComponent,
   ReposListComponent ]
