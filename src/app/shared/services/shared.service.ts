@@ -7,10 +7,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SharedService {
   public user:any = null;
+  public vizLayout:boolean = false;
   public getHttpHeaders()
   {
     let headers = new Headers();
-    headers.append('x-access-token', this.user.token);
+    headers.append('x-access-token', (this.user?this.user.token:""));
     let options = new RequestOptions({ headers: headers });
     return options;
   }

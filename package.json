@@ -20,6 +20,7 @@
   "dependencies": {
     "@angular/common": "4.1.1",
     "@angular/compiler": "4.1.1",
+    "@angular/compiler-cli": "^4.0.2",
     "@angular/core": "4.1.1",
     "@angular/forms": "4.1.1",
     "@angular/http": "4.1.1",
@@ -28,20 +29,14 @@
     "@angular/router": "4.1.1",
     "@angular/upgrade": "4.1.1",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.25",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "^6.0.42",
     "angular-cli": "^1.0.0-beta.28.3",
     "angular2-ladda": "^1.2.1",
     "chart.js": "2.5.0",
+    "codelyzer": "~2.0.0-beta.1",
     "core-js": "2.4.1",
     "express": "^4.15.2",
-    "moment": "2.18.1",
-    "ng2-charts": "1.5.0",
-    "rxjs": "5.3.1",
-    "ts-helpers": "1.1.2",
-    "zone.js": "0.8.10",
-    "@angular/compiler-cli": "^4.0.2",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "^6.0.42",
-    "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.7.0",
@@ -50,12 +45,16 @@
     "karma-coverage-istanbul-reporter": "1.2.1",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
+    "moment": "2.18.1",
+    "ng2-charts": "1.5.0",
     "protractor": "5.1.1",
+    "rxjs": "5.3.1",
+    "ts-helpers": "1.1.2",
     "ts-node": "3.0.4",
     "tslint": "5.2.0",
-    "typescript": "2.3.2"
+    "typescript": "2.3.2",
+    "vis": "^4.20.0",
+    "zone.js": "0.8.10"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }

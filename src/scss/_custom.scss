@@ -9,6 +9,10 @@
 .nav-link{
     font-size: 12px;
 }
+.vizLayout{
+    padding: 0 !important;
+    background-color: #333333;
+}
 .nav-link.nav-dropdown-toggle
 {
     font-size: 12px;
@@ -26,7 +30,12 @@
         vertical-align: middle;
     }
 }
-.table th, .table td
+.table td
 {
     padding: 0.45em;
+}
+
+.table tr td:last-child{
+    width:1%;
+    white-space:nowrap;
 }

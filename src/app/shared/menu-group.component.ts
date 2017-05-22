@@ -11,7 +11,7 @@ import { Component,Input } from '@angular/core';
           <div id="{{'collapse-'+menuGroupItem.id}}" [ngbCollapse]="isCollapsed">
             <li *ngFor="let child of menuGroupItem.childs" class="nav-item nav-dropdown" routerLinkActive="open">
               <div [ngSwitch]="child.childs">
-                <a *ngSwitchCase="undefined" class="nav-link "  routerLinkActive="active" [routerLink]="[child.route]" [queryParams]="{pkey:child.id}"><i [ngStyle]="{'color': child.color}" ngClass="{{child.icon}}"></i> {{child.lib}}</a>
+                <a *ngSwitchCase="undefined" class="nav-link "  routerLinkActive="active" [routerLink]="[child.route]"><i [ngStyle]="{'color': child.color}" ngClass="{{child.icon}}"></i> {{child.lib}}</a>
                 <a *ngSwitchDefault class="nav-link nav-dropdown-toggle" href="#"><i [ngStyle]="{'color': child.color}" ngClass="{{child.icon}}"></i> {{child.lib}}</a>
               </div>
               <ul *ngIf="child.childs" class="nav-dropdown-items">

@@ -12,13 +12,19 @@ export class ReposService {
   
   constructor (private http: Http,private sharedService:SharedService) {}
 
+  remove(repoName,id): Observable<any> {
+    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/remove/" + repoName, data,this.sharedService.getHttpHeaders())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
   add(repoName,data): Observable<any> {
     return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-  getAll(repoName,data): Observable<any[]> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/" + repoName + "/1/10", data,this.sharedService.getHttpHeaders())
+  getAll(repoName,page,data): Observable<any[]> {
+    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/" + repoName + "/"+page+"/10", data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }

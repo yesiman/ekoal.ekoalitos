@@ -11,7 +11,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: ':lib',
+        path: ':pkey',
         component: ProjectsDashboardComponent,
         data: {
           title: ':lib'

@@ -9,28 +9,58 @@ import { ReposService } from '../services/repositories.service';
 })
 export class ReposListComponent implements OnInit {
   //
-  private datas:any = [];
+  private items:any = [];
+  private itemsLength:number = 0;
+  //
   private params:any;
+  private tabOptions:any = {
+      collectionSize:0,
+      currentPage:1
+    };
   private filters = {
     text:""
   };
   //
   constructor(private reposService:ReposService,private router: Router) {}
   //
+  onPageChange(event){
+    this.tabOptions.currentPage = event;
+    this.loadPage({filters:this.filters});
+  }
+  //
+  loadPage(filters)
+  {
+    this.reposService.getAll(this.params.repoName,this.tabOptions.currentPage, filters)
+        .subscribe(
+          data  => this.dataPageLoaded(data),
+          error =>  console.log(error));
+  }
+  //
+  dataPageLoaded(datas)
+  {
+    this.items = datas.items;
+    this.itemsLength = 
+      this.tabOptions.collectionSize = 
+      datas.count; 
+  }
+  //
+  edit(id)
+  {
+    alert("edit"+id);
+  }
+  remove(id)
+  {
+    alert("remove"+id);
+  }
+  //
   filtersChange()
   {
-    this.reposService.getAll(this.params.repoName, {filters:this.filters})
-        .subscribe(
-          data  => this.datas = data,
-          error =>  console.log(error));
+    this.loadPage({filters:this.filters});
   }
   //
   ngOnInit(): void {
     //
     this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"list");
-    this.reposService.getAll(this.params.repoName, this.filters)
-        .subscribe(
-          data  => this.datas = data,
-          error =>  console.log(error));
+    this.loadPage(this.filters);
   }
 }
