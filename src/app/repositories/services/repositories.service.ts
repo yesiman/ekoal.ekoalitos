@@ -4,20 +4,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { SharedService } from '../../shared/services/shared.service';
-
 @Injectable()
 export class ReposService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
   private baseUrl = 'https://ekoalit-os-srv.herokuapp.com/users/1/2';  // URL to web API
-  
   constructor (private http: Http,private sharedService:SharedService) {}
-
   remove(repoName,id): Observable<any> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/remove/" + repoName, data,this.sharedService.getHttpHeaders())
+    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/remove/" + repoName, {id:id},this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-
   add(repoName,data): Observable<any> {
     return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
