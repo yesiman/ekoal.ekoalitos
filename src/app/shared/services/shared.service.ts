@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SharedService {
   public user:any = null;
+  public apiBasUrl:string = "https://ekoalit-os-srv.herokuapp.com/";
   public vizLayout:boolean = false;
   public getHttpHeaders()
   {
@@ -16,7 +17,7 @@ export class SharedService {
     return options;
   }
   getDatatypes(): Observable<any> {
-     return this.http.post("https://ekoalit-os-srv.herokuapp.com/datatypes", {},this.getHttpHeaders())
+     return this.http.post(this.apiBasUrl + "datatypes", {},this.getHttpHeaders())
               .map(this.extractData)
               .catch(this.handleError);
   }

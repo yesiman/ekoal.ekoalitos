@@ -33,7 +33,11 @@ export const routes: Routes = [
         loadChildren: './components/components.module#ComponentsModule'
       },
       {
-        path: 'protos',
+        path: 'prototypes',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
+        path: 'prototypes/edit/:okey',
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
@@ -45,7 +49,15 @@ export const routes: Routes = [
         loadChildren: './projects/projects.module#ProjectsDashboardModule'
       },
       {
+        path: 'projects/edit/:okey',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
         path: 'properties',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
+        path: 'properties/edit/:okey',
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
@@ -53,7 +65,15 @@ export const routes: Routes = [
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
+        path: 'objects/edit/:okey',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
         path: 'users',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
+        path: 'users/edit/:okey',
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
@@ -61,11 +81,17 @@ export const routes: Routes = [
         loadChildren: './repositories/repositories.module#ReposModule'
       },
       {
+        path: 'datatypes/edit/:okey',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
+      {
         path: 'langs',
         loadChildren: './repositories/repositories.module#ReposModule'
-      }
-      
-      ,
+      },
+      {
+        path: 'langs/edit/:okey',
+        loadChildren: './repositories/repositories.module#ReposModule'
+      },
       {
         path: 'icons',
         loadChildren: './icons/icons.module#IconsModule'

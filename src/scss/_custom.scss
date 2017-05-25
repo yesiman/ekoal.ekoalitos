@@ -39,3 +39,10 @@
     width:1%;
     white-space:nowrap;
 }
+
+.has-error input,.has-error select,.has-error textarea{
+   border: 1px solid #f86c6b !important;
+   -webkit-box-shadow: none !important;
+   -ms-box-shadow: none !important;
+   box-shadow: none !important;
+}

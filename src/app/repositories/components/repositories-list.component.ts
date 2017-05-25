@@ -44,13 +44,17 @@ export class ReposListComponent implements OnInit {
       datas.count; 
   }
   //
-  edit(id)
+  edit(it)
   {
-    alert("edit"+id);
+    it.editClicked = true;
   }
-  remove(id)
+  remove(it)
   {
-    alert("remove"+id);
+    it.remClicked = true;
+    this.reposService.remove(this.params.repoName,it._id)
+        .subscribe(
+          data  => this.loadPage(this.filters),
+          error =>  console.log(error));
   }
   //
   filtersChange()

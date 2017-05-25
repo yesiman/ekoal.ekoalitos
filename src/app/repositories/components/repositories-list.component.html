@@ -27,8 +27,8 @@
                 <td>2012/01/01</td>
                 <td>Member</td>
                 <td>
-                  <button class="btn btn-primary" (click)="edit(item._id)"><i class="icon-pencil"></i></button>
-                  <button class="btn btn-danger" (click)="remove(item._id)"><i class="icon-close"></i></button>
+                  <a  routerLinkActive="active" [routerLink]="['/' + params.repoName + '/edit/' + item._id]"><button class="btn btn-primary" data-style="slide-down" [ladda]="item.editClicked" (click)="edit(item)"><i class="icon-pencil"></i></button></a>
+                  <button class="btn btn-danger" data-style="slide-down" [ladda]="item.remClicked" (click)="remove(item)"><i class="icon-close"></i></button>
                 </td>
               </tr>
             </tbody>

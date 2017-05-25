@@ -26,6 +26,7 @@ export class ProjectsDashboardComponent implements OnInit {
       .queryParams
       .subscribe(params => {
           this.pkey = params['pkey'];
+          alert(this.pkey);
       });
     //load poject aggreation counts
     

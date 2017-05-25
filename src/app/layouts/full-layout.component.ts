@@ -21,17 +21,16 @@ export class FullLayoutComponent implements OnInit {
   {
     var it = { id:1,lib:"Projets",childs:[],routeMasterAdd:"/projects/edit"};
     data.items.forEach(element => {
-      console.log(element);
-      it.childs.push(this.layoutService.getStdMenuItemChilds(element._id,element.lib,"icon-layers","#f86c6b","/protos/edit","/protos/list","/project/"  + element._id,false));  
+      it.childs.push(this.layoutService.getStdMenuItemChilds(element._id,element.lib,"icon-layers","#f86c6b","/prototypes/edit","/prototypes/list","/project/"  + element._id,false));  
     });
     this.menuItems.push(it);
     it = { id:2,lib:"Administration",childs:[],routeMasterAdd:null };
-    it.childs.push(this.layoutService.getStdMenuItemChilds("21","Prototypes","icon-layers","#f86c6b","/protos/edit","/protos/list","",true));
-    it.childs.push(this.layoutService.getStdMenuItemChilds("22","Propriétés","icon-puzzle","#f8cb00","/properties/edit","/properties/list","",true));
-    it.childs.push(this.layoutService.getStdMenuItemChilds("23","Objets","icon-diamond","#4dbd74","/objects/edit","/objects/list","",true));
-    it.childs.push(this.layoutService.getStdMenuItemChilds("24","Utilisateurs","icon-user","#20a8d8","/users/edit","/users/list","",true));
-    it.childs.push(this.layoutService.getStdMenuItemChilds("25","Types de données","icon-direction","#aad450","/datatypes/edit","/datatypes/list","",true));
-    it.childs.push(this.layoutService.getStdMenuItemChilds("26","Langues","icon-flag","#f78c40","/langs/edit","/langs/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("21","Prototypes","icon-layers","#f86c6b","/prototypes/edit/-1","/prototypes/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("22","Propriétés","icon-puzzle","#f8cb00","/properties/edit/-1","/properties/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("23","Objets","icon-diamond","#4dbd74","/objects/edit/-1","/objects/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("24","Utilisateurs","icon-user","#20a8d8","/users/edit/-1","/users/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("25","Types de données","icon-direction","#aad450","/datatypes/edit/-1","/datatypes/list","",true));
+    it.childs.push(this.layoutService.getStdMenuItemChilds("26","Langues","icon-flag","#f78c40","/langs/edit/-1","/langs/list","",true));
     this.menuItems.push(it);
   }
 

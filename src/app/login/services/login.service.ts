@@ -7,10 +7,9 @@ import { SharedService } from '../../shared/services/shared.service';
 
 @Injectable()
 export class LoginService {
-  private heroesUrl = 'https://ekoalit-os-srv.herokuapp.com/login/log/pass';  // URL to web API
   constructor (private http: Http,private sharedService:SharedService) {}
   login(user): Observable<any> {
-      return this.http.post("https://ekoalit-os-srv.herokuapp.com/users/login", {user:user})
+      return this.http.post(this.sharedService.apiBasUrl + "users/login", {user:user})
                   .map(this.extractLoginData)
                   .catch(this.handleError);
     }

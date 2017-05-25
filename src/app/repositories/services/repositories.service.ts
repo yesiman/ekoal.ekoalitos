@@ -7,28 +7,32 @@ import { SharedService } from '../../shared/services/shared.service';
 @Injectable()
 export class ReposService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
-  private baseUrl = 'https://ekoalit-os-srv.herokuapp.com/users/1/2';  // URL to web API
   constructor (private http: Http,private sharedService:SharedService) {}
   remove(repoName,id): Observable<any> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/remove/" + repoName, {id:id},this.sharedService.getHttpHeaders())
+    return this.http.delete(this.sharedService.apiBasUrl + "repos/" + repoName + "/" + id, this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   add(repoName,data): Observable<any> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
+    return this.http.post(this.sharedService.apiBasUrl + "repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getAll(repoName,page,data): Observable<any[]> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/" + repoName + "/"+page+"/10", data,this.sharedService.getHttpHeaders())
+    return this.http.post(this.sharedService.apiBasUrl + "repos/" + repoName + "/"+page+"/10", data,this.sharedService.getHttpHeaders())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  get(repoName,id): Observable<any[]> {
+    return this.http.get(this.sharedService.apiBasUrl + "repos/" + repoName + "/" + id, this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getStdMenuItemChildsParams(routerUrl,repoMethod){
     var params = {};
-    switch (routerUrl)
+    switch (true)
     {
-        case "/protos/" + repoMethod:
+        case routerUrl.toString().startsWith("/prototypes/" + repoMethod):
           params = {
             title:"Prototypes",
             color:"",
@@ -39,7 +43,7 @@ export class ReposService {
             ]
           };
           break;
-        case "/properties/" + repoMethod:
+        case routerUrl.toString().startsWith("/properties/" + repoMethod):
           params = {
             title:"Propriétés",
             color:"",
@@ -51,21 +55,21 @@ export class ReposService {
             ]
           };
           break;
-        case "/objects/" + repoMethod:
+        case routerUrl.toString().startsWith("/objects/" + repoMethod):
           params = {
             title:"Objets",
             color:"",
             repoName: "objects"
           };
           break;
-        case "/projects/" + repoMethod:
+        case routerUrl.toString().startsWith("/projects/" + repoMethod):
           params = {
             title:"Projects",
             color:"",
             repoName: "projects"
           };
           break;
-        case "/users/" + repoMethod:
+        case routerUrl.toString().startsWith("/users/" + repoMethod):
           params = {
             title:"Utilisateurs",
             color:"",
@@ -77,18 +81,21 @@ export class ReposService {
             ]
           };
           break;
-        case "/datatypes/" + repoMethod:
+        case routerUrl.toString().startsWith("/datatypes/" + repoMethod):
+        
           params = {
             title:"Types de données",
             color:"",
             repoName: "datatypes",
             props:[
+              {type:'text',lib:"Libellé",tooltip:"",model:"lib",showList:true},
               {type:'text',lib:"code",tooltip:"Code type de donnée",model:"code",showList:true},
               {type:'longtext',lib:"Description",tooltip:"Description du prototype",model:"desc",showList:true},
             ]
           };
           break;
-        case "/langs/" + repoMethod:
+        case routerUrl.toString().startsWith("/langs/" + repoMethod):
+        
           params = {
             title:"Languages",
             color:"",

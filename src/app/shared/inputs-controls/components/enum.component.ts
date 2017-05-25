@@ -16,7 +16,7 @@ export class EnumInputComponent implements OnInit {
   {
     this.valueChange.emit({ value:event, model:this.model});
     //new Date(1999,9,9,event.hour,event.minute,event.second,0)
-}
+  }
   constructor(private sharedService:SharedService) {
     
   }

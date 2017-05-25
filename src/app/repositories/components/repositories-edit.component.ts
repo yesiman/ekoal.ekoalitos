@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 
 
@@ -16,17 +16,30 @@ import { SharedService } from '../../shared/services/shared.service';
 export class ReposEditComponent implements OnInit {
 
   private params:any;
-  item:any;
+  private okey:any;
+  item:any = {};
   saving:boolean = false;
   test:String;
 
-  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService) {
-    this.item = { lib: "jklkm"};
+  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute) {
+    
   }
 
   ngOnInit(): void {
     //
     this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
+    this.route
+      .params
+      .subscribe(params => {
+          this.okey = params['okey'];
+      });
+    if (this.okey != "-1")
+    {
+        this.reposService.get(this.params.repoName,this.okey)
+        .subscribe(
+          data  => this.item = data,
+          error =>  console.log(error));
+    }
   }
 
   private onDataSave()
@@ -44,9 +57,9 @@ export class ReposEditComponent implements OnInit {
   private inpValueChange(value)
   {
       this.item[value.model] = value.value;
-      console.log(this.item);
+      
     //console.log("Files",value);
-    //this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
+    //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
     //  .subscribe(
     //      data  => this.s3SignOk(data,value[0]),
     //      error => console.log(error));
@@ -100,7 +113,7 @@ export class ReposEditComponent implements OnInit {
   }
 
   valid(){
-    //this.makeFileRequest("https://ekoalit-os-srv.herokuapp.com/awsbucket/signs3",null);
+    //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3",null);
     //console.log(this.item);
     this.saving = true;
     this.reposService.add(this.params.repoName, this.item)

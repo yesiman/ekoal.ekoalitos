@@ -8,17 +8,14 @@ import { SharedService } from '../../../shared/services/shared.service';
 @Injectable()
 export class ProjectsDashboardService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
-  private baseUrl = 'https://ekoalit-os-srv.herokuapp.com/users/1/2';  // URL to web API
-  
   constructor (private http: Http,private sharedService:SharedService) {}
-
   add(repoName,data): Observable<any> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
+    return this.http.post(this.sharedService.apiBasUrl + "repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getAll(repoName,data): Observable<any[]> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/" + repoName + "/1/10", data,this.sharedService.getHttpHeaders())
+    return this.http.post(this.sharedService.apiBasUrl + "repos/" + repoName + "/1/10", data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -26,7 +23,7 @@ export class ProjectsDashboardService {
     var params = {};
     switch (routerUrl)
     {
-        case "/protos/" + repoMethod:
+        case "/prototypes/" + repoMethod:
           params = {
             title:"Prototypes",
             color:"",

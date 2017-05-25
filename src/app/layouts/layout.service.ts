@@ -8,18 +8,13 @@ import { SharedService } from '../shared/services/shared.service';
 @Injectable()
 export class LayoutService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
-  private baseUrl = 'https://ekoalit-os-srv.herokuapp.com/users/1/2';  // URL to web API
-  
-
   constructor (private http: Http,private sharedService:SharedService) {}
-
   getProjects(): Observable<any> {
-    return this.http.post("https://ekoalit-os-srv.herokuapp.com/repos/projects/1/10", {},this.sharedService.getHttpHeaders())
+    return this.http.post(this.sharedService.apiBasUrl + "repos/projects/1/10", {},this.sharedService.getHttpHeaders())
                 .map(this.extractData)
                 .catch(this.handleError);
     }
   getStdMenuItemChilds(id,lib,icon,color,routeFNew,routeFList,route, withChilds):any {
-    console.log(id);
     var ret:any = {
       id:id,
       lib:lib,

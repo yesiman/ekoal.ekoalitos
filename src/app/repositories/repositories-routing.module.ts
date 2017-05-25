@@ -13,10 +13,10 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'edit',
+        path: 'edit/:okey',
         component: ReposEditComponent,
         data: {
-          title: 'View'
+          title: 'Nouveau'
         }
       },
       {
