@@ -8,13 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { BsDropdownModule } from 'ng2-bootstrap/dropdown';
-
-import { TooltipModule } from 'ng2-bootstrap/tooltip';
 
 
-
-import { TabsModule } from 'ng2-bootstrap/tabs';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 import { LaddaModule } from 'angular2-ladda';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -36,9 +31,7 @@ import { SharedService } from './shared/services/shared.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),LaddaModule,TooltipModule,
+    NgbModule.forRoot(),LaddaModule,
     ChartsModule,HttpModule,FormsModule,
   ],
   declarations: [
