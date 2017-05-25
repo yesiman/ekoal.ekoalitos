@@ -25,7 +25,7 @@ import { ReposRoutingModule } from './repositories-routing.module';
 @NgModule({
   imports: [
     NgbModule,
-    TabsModule,LaddaModule,
+    LaddaModule,
     ReposRoutingModule,
     CommonModule,FormsModule,
   ],

@@ -13,7 +13,7 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 @NgModule({
   imports: [
     NgbModule,
-    TabsModule,LaddaModule,
+    LaddaModule,
     ProjectsRoutingModule,
     CommonModule,FormsModule,
   ],
