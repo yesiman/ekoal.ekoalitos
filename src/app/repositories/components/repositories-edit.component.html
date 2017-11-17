@@ -6,70 +6,80 @@
         <div class="card-header">
           <i class="fa fa-align-justify"></i> {{params.title}}
           <div class="card-actions">
-            
             <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
             <a href="#" class="btn-minimize"><i class="icon-arrow-up"></i></a>
             <a href="#" class="btn-close"><i class="icon-close"></i></a>
           </div>
         </div>
-          <ngb-tabset type="pills">
-            <ngb-tab>
-                  <ng-template ngbTabTitle><i class="icon-screen-desktop"></i> Informations principales</ng-template>
-                  <ng-template ngbTabContent>
-                  <form class="form-horizontal">
-                    <!--START.PROPS DYNAMIC GENERATION-->
-                    <div *ngFor="let p of params.props">
-                      <div class="form-group row" [ngClass]="{'has-error':true}">
-                        <label class="col-md-3 form-control-label" for="text-input"> <i class="icon-info" ngbTooltip="{{p.tooltip}}"></i>  {{p.lib}} </label>
-                        <div class="col-md-9" [ngSwitch]="p.type">
-                          <textinputcomponent *ngSwitchCase="'text'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></textinputcomponent>
-                          <longtextinputcomponent *ngSwitchCase="'longtext'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></longtextinputcomponent>
-                          <timeinputcomponent *ngSwitchCase="'time'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></timeinputcomponent>
-                          <booleaninputcomponent *ngSwitchCase="'boolean'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></booleaninputcomponent>
-                          <dateinputcomponent *ngSwitchCase="'date'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></dateinputcomponent>
-                          <fileinputcomponent *ngSwitchCase="'file'" [model]="p.model"  (valueChange)="inpValueChange($event,p.model)"></fileinputcomponent>
-                          <enuminputcomponent *ngSwitchCase="'enum'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></enuminputcomponent>
-                        </div>
-                      </div>
-                      <hr>
+        <ngb-tabset type="pills">
+          <ngb-tab>
+            <ng-template ngbTabTitle><i class="icon-screen-desktop"></i> Informations principales</ng-template>
+            <ng-template ngbTabContent>
+              <form class="form-horizontal">
+                <!--START.PROPS DYNAMIC GENERATION-->
+                <div *ngFor="let p of params.props">
+                  <div class="form-group row" [ngClass]="{'has-error':true}">
+                    <label class="col-md-3 form-control-label" for="text-input"> <i class="icon-info" ngbTooltip="{{p.tooltip}}"></i>  {{p.lib}} </label>
+                    <div class="col-md-9" [ngSwitch]="p.type">
+                      <textinputcomponent *ngSwitchCase="'text'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></textinputcomponent>
+                      <longtextinputcomponent *ngSwitchCase="'longtext'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></longtextinputcomponent>
+                      <timeinputcomponent *ngSwitchCase="'time'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></timeinputcomponent>
+                      <booleaninputcomponent *ngSwitchCase="'boolean'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></booleaninputcomponent>
+                      <dateinputcomponent *ngSwitchCase="'date'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></dateinputcomponent>
+                      <fileinputcomponent *ngSwitchCase="'file'" [model]="p.model" (valueChange)="inpValueChange($event,p.model)"></fileinputcomponent>
+                      <enuminputcomponent *ngSwitchCase="'enum'" [model]="p.model" [value]="item[p.model]" (valueChange)="inpValueChange($event,p.model)"></enuminputcomponent>
                     </div>
-                    <!--END.MENU DYNAMIC GENERATION-->
-                    <div class="form-actions">
-                      <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
-                      <button class="btn btn-default" type="button">Cancel</button>
-                    </div>
-                  </form>
-                  </ng-template>
-                  </ngb-tab>
-                <ngb-tab *ngIf="this.params.repoName == 'prototypes'">
-                  <ng-template ngbTabTitle><i class="icon-drop"></i> Propriétés  <span class="badge badge-pill badge-danger">29</span></ng-template>
-                  <ng-template ngbTabContent>
-                  3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </ng-template>
-                </ngb-tab>
-                <ngb-tab>
-                  <ng-template ngbTabTitle><i class="icon-grid"></i> Options</ng-template>
-<ng-template ngbTabContent>
-                    <p>
-                      3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                      <form class="form-horizontal">
-                    <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="text-input">Séquençable</label>
-                      <div class="col-md-9">
-                        <label class="switch switch-default switch-success">
-                          <input type="checkbox" class="switch-input">
-                          <span class="switch-label"></span>
-                          <span class="switch-handle"></span>
-                        </label>
-                      </div>
-                    </div>
-                      </form>
-</ng-template>
-                </ngb-tab>
-            </ngb-tabset>
-        
+                  </div>
+                  <hr>
+                </div>
+                <!--END.MENU DYNAMIC GENERATION-->
+                <div class="form-actions">
+                  <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
+                  <button class="btn btn-default" type="button">Cancel</button>
+                </div>
+              </form>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab *ngIf="this.params.repoName == 'prototypes'">
+            <ng-template ngbTabTitle><i class="icon-drop"></i> Propriétés <span class="badge badge-pill badge-danger">29</span></ng-template>
+            <ng-template ngbTabContent>
+              3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+              sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab *ngIf="this.params.repoName == 'prototypes'">
+            <ng-template ngbTabTitle><i class="icon-grid"></i> Options</ng-template>
+            <ng-template ngbTabContent>
+              <form class="form-horizontal">
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="text-input"> <i class="icon-info" ngbTooltip="{{p.tooltip}}"></i> Séquençable</label>
+                  <div class="col-md-9" [ngSwitch]="p.type">
+                    <label class="switch switch-default switch-success">
+                      <input type="checkbox" class="switch-input">
+                      <span class="switch-label"></span>
+                      <span class="switch-handle"></span>
+                    </label>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="text-input"> <i class="icon-info" ngbTooltip="{{p.tooltip}}"></i> Séquençable</label>
+                  <div class="col-md-9" [ngSwitch]="p.type">
+                    <label class="switch switch-default switch-success">
+                      <input type="checkbox" class="switch-input">
+                      <span class="switch-label"></span>
+                      <span class="switch-handle"></span>
+                    </label>
+                  </div>
+                </div>
+                <hr>
+              </form>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
       </div>
     </div>
-   </div>
+  </div>
 </div>
