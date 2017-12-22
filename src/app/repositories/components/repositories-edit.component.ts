@@ -22,17 +22,20 @@ export class ReposEditComponent implements OnInit {
   test:String;
 
   constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute) {
-    
+    //
+    this.route
+    .params
+    .subscribe(params => {
+        this.okey = params['okey'];
+        this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
+        
+    });
   }
 
   ngOnInit(): void {
     //
-    this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
-    this.route
-      .params
-      .subscribe(params => {
-          this.okey = params['okey'];
-      });
+    
+    
     if (this.okey != "-1")
     {
         this.reposService.get(this.params.repoName,this.okey)
@@ -40,6 +43,7 @@ export class ReposEditComponent implements OnInit {
           data  => this.item = data,
           error =>  console.log(error));
     }
+    
   }
 
   private onDataSave()
