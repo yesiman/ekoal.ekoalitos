@@ -1,14 +1,15 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Icomp } from 'app/icomp';
 
 @Component({
   selector: 'fileinputcomponent',
   templateUrl: 'file.component.html',
 })
-export class FileInputComponent {
-  @Input() value: string;
+export class FileInputComponent implements Icomp {
+  @Input() value: any;
   @Output() valueChange = new EventEmitter<Object>();
 @Input() model: string;
-  private inputValueChange(event)
+  inputValueChange(event)
   {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;

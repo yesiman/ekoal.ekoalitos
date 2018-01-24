@@ -1,4 +1,5 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Icomp } from 'app/icomp';
 
 
 
@@ -6,12 +7,12 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
   selector: 'textinputcomponent',
   templateUrl: 'text.component.html',
 })
-export class TextInputComponent {
-  @Input() value: string;
+export class TextInputComponent implements Icomp {
+  @Input() value: any;
   @Output() valueChange = new EventEmitter<Object>();
   @Input() model: string;
 
-  private inputValueChange(event)
+  inputValueChange(event)
   {
     this.valueChange.emit({ value:this.value, model:this.model});
   }

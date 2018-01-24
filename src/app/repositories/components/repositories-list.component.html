@@ -15,17 +15,18 @@
           <table class="table table-bordered table-striped table-condensed">
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Date registered</th>
-                <th>Role</th>
+                <th *ngFor="let p of propsList">
+                  {{p.lib}}
+                </th>
+                <!--ACTIONS-->
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of items">
-                <td>{{item.lib}}</td>
-                <td>2012/01/01</td>
-                <td>Member</td>
+                <td *ngFor="let p of propsList">
+                  {{item[p.model]}}
+                </td>
                 <td>
                   <a  routerLinkActive="active" [routerLink]="['/' + params.repoName + '/edit/' + item._id]"><button class="btn btn-primary" data-style="slide-down" [ladda]="item.editClicked" (click)="edit(item)"><i class="icon-pencil"></i></button></a>
                   <button class="btn btn-danger" data-style="slide-down" [ladda]="item.remClicked" (click)="remove(item)"><i class="icon-close"></i></button>

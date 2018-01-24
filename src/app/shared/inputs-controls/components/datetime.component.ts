@@ -1,14 +1,15 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Icomp } from 'app/icomp';
 
 @Component({
   selector: 'datetimeinputcomponent',
   templateUrl: 'datetime.component.html',
 })
-export class DateTimeInputComponent {
-  @Input() value: Date;
+export class DateTimeInputComponent implements Icomp {
+  @Input() value: any;
   @Output() valueChange = new EventEmitter<Object>();
 @Input() model: string;
-  private inputValueChange(event)
+  inputValueChange(event)
   {
     this.valueChange.emit({ value:new Date(1999,9,9,9,9,9,9), model:this.value});
   }

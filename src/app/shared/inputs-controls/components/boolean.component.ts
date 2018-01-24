@@ -1,14 +1,15 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Icomp } from 'app/icomp';
 
 @Component({
   selector: 'booleaninputcomponent',
   templateUrl: 'boolean.component.html',
 })
-export class BooleanInputComponent {
-  @Input() value: boolean;
+export class BooleanInputComponent implements Icomp {
+  @Input() value: any;
   @Output() valueChange = new EventEmitter<Object>();
   @Input() model: string;
-  private inputValueChange(event)
+  inputValueChange(event)
   {
     this.valueChange.emit({ value:event, model:this.model});
   }

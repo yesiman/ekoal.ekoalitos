@@ -13,6 +13,7 @@ export class ReposListComponent implements OnInit {
   private itemsLength:number = 0;
   //
   private params:any;
+  private propsList:any;
   private tabOptions:any = {
       collectionSize:0,
       currentPage:1
@@ -38,6 +39,7 @@ export class ReposListComponent implements OnInit {
   //
   dataPageLoaded(datas)
   {
+    console.log("datas.items[0]",datas.items[0]["lib"]);
     this.items = datas.items;
     this.itemsLength = 
       this.tabOptions.collectionSize = 
@@ -65,6 +67,7 @@ export class ReposListComponent implements OnInit {
   ngOnInit(): void {
     //
     this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"list");
+    this.propsList = this.params.props.filter(p => p.showList === true);
     this.loadPage(this.filters);
   }
 }
