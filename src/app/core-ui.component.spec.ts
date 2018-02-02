@@ -1,13 +1,7 @@
 import {
-  beforeEachProviders,
-  describe,
-  expect,
-  it,
   inject
 } from '@angular/core/testing';
 import { CoreUIAppComponent } from '../app/core-ui.component';
-
-beforeEachProviders(() => [CoreUIAppComponent]);
 
 describe('App: CoreUI', () => {
   it('should create the app',

@@ -5,6 +5,7 @@ import { ReposService } from '../services/repositories.service';
 
 @Component({
   templateUrl: 'repositories-list.component.html',
+  styleUrls: ['repositories-list.scss'],
   providers: [ ReposService ]
 })
 export class ReposListComponent implements OnInit {
@@ -39,7 +40,6 @@ export class ReposListComponent implements OnInit {
   //
   dataPageLoaded(datas)
   {
-    console.log("datas.items[0]",datas.items[0]["lib"]);
     this.items = datas.items;
     this.itemsLength = 
       this.tabOptions.collectionSize = 

@@ -21,6 +21,8 @@ import { ReposListComponent } from './components/repositories-list.component';
 
 
 import { ReposRoutingModule } from './repositories-routing.module';
+import { ModRepoListComponent } from 'app/repositories/modals/modRepoList/mod-repo-list.component';
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @NgModule({
   imports: [
@@ -30,14 +32,18 @@ import { ReposRoutingModule } from './repositories-routing.module';
     CommonModule,FormsModule,
   ],
   declarations: [ CompLabelComponent,LongTextInputComponent,
-  TextInputComponent,
-  DateInputComponent,
-  DateTimeInputComponent,
-  BooleanInputComponent,
-  TimeInputComponent,
-  EnumInputComponent,
-  FileInputComponent,
-  ReposEditComponent,
-  ReposListComponent ]
+    TextInputComponent,
+    DateInputComponent,
+    DateTimeInputComponent,
+    BooleanInputComponent,
+    TimeInputComponent,
+    EnumInputComponent,
+    FileInputComponent,
+    ReposEditComponent,
+    ReposListComponent,ModRepoListComponent 
+  ],
+  entryComponents: [
+      ModRepoListComponent,
+  ],
 })
 export class ReposModule { }

@@ -25,6 +25,7 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import { SharedService } from './shared/services/shared.service';
+import { CookieService } from 'ng2-cookies';
  
 
 @NgModule({
@@ -48,7 +49,7 @@ import { SharedService } from './shared/services/shared.service';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },SharedService],
+  },SharedService,CookieService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

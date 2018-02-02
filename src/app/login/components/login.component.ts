@@ -18,18 +18,20 @@ export class LoginComponent {
   private parentRouter:Router;
   private logReq:boolean = false;
   private user:any = {};
-  constructor(private loginService:LoginService,private router: Router,private sharedService:SharedService) {
+  constructor(private loginService:LoginService,private router: Router,
+    private sharedService:SharedService) {
     this.parentRouter = router;
   }
   private onLogResponse(data)
   {
     this.logReq = false;
     if (data.success) {
-      this.sharedService.user = {
+      
+      this.sharedService.setUser({
         token:data.token,
         name:data.name,
         surn:data.surn,
-      };
+      });
       this.parentRouter.navigateByUrl('/dashboard');
     }
   }

@@ -8,7 +8,9 @@ import { SharedService } from '../shared/services/shared.service';
 @Injectable()
 export class LayoutService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
-  constructor (private http: Http,private sharedService:SharedService) {}
+  constructor (private http: Http,private sharedService:SharedService) {
+    
+  }
   getProjects(): Observable<any> {
     return this.http.post(this.sharedService.apiBasUrl + "repos/projects/1/10", {},this.sharedService.getHttpHeaders())
                 .map(this.extractData)

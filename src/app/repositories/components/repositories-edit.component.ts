@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
-
-
-import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/fromPromise';
+import { Observable } from 'rxjs/Observable';
 
 import { ReposService } from '../services/repositories.service';
 import { SharedService } from '../../shared/services/shared.service';
 
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ModRepoListComponent } from 'app/repositories/modals/modRepoList/mod-repo-list.component';
+
 @Component({
+selector:'repositories-edit',
+styleUrls: ['repositories-edit.scss'],
   templateUrl: 'repositories-edit.component.html',
   providers: [ ReposService ]
 })
@@ -21,7 +23,7 @@ export class ReposEditComponent implements OnInit {
   saving:boolean = false;
   test:String;
 
-  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute) {
+  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
     //
     this.route
     .params
@@ -29,6 +31,17 @@ export class ReposEditComponent implements OnInit {
         this.okey = params['okey'];
         this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
         
+    });
+  }
+
+  open() {
+    
+
+
+    this.modalService.open(ModRepoListComponent).result.then((result) => {
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 

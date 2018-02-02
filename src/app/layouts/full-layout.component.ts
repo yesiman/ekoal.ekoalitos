@@ -36,6 +36,7 @@ export class FullLayoutComponent implements OnInit {
 
   constructor(private layoutService:LayoutService,private sharedService:SharedService) {
     this.menuItems = [];
+    this.sharedService.getUserViaCokies();
     this.layoutService.getProjects()
         .subscribe(
           data  => this.bindMenu(data),
