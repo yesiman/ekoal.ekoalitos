@@ -1,0 +1,25 @@
+<div class="animated fadeIn">
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> {{params.title}}
+          <div class="card-actions">
+            <div href="#"><input type="text" placeholder="Filtre..." [(ngModel)]="filters.text" (ngModelChange)="filtersChange($event)"/></div>
+            <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
+            <a href="#" class="btn-minimize"><i class="icon-arrow-up"></i></a>
+            <a href="#" class="btn-close"><i class="icon-close"></i></a>
+          </div>
+        </div>
+        <div class="card-body">
+
+            <list-objects [gabIn]="gab"></list-objects>
+
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

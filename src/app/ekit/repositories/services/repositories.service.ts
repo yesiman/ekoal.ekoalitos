@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions }          from '@angular/http'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { SharedService } from '../../shared/services/shared.service';
+import { SharedService } from '../../../shared/services/shared.service';
 @Injectable()
 export class ReposService {
   //TODO ADD GLOBAL BASE PATH SOMEWHERE
@@ -32,7 +32,7 @@ export class ReposService {
     var params = {};
     switch (true)
     {
-        case routerUrl.toString().startsWith("/prototypes/" + repoMethod):
+        case routerUrl.toString().startsWith("/prototypes/"):
           params = {
             title:"Prototypes",
             color:"",
@@ -43,7 +43,7 @@ export class ReposService {
             ]
           };
           break;
-        case routerUrl.toString().startsWith("/properties/" + repoMethod):
+        case routerUrl.toString().startsWith("/properties/"):
           params = {
             title:"Propriétés",
             color:"",
@@ -55,21 +55,21 @@ export class ReposService {
             ]
           };
           break;
-        case routerUrl.toString().startsWith("/objects/" + repoMethod):
+        case routerUrl.toString().startsWith("/objects/"):
           params = {
             title:"Objets",
             color:"",
             repoName: "objects"
           };
           break;
-        case routerUrl.toString().startsWith("/projects/" + repoMethod):
+        case routerUrl.toString().startsWith("/projects/"):
           params = {
             title:"Projects",
             color:"",
             repoName: "projects"
           };
           break;
-        case routerUrl.toString().startsWith("/users/" + repoMethod):
+        case routerUrl.toString().startsWith("/users/"):
           params = {
             title:"Utilisateurs",
             color:"",
@@ -81,7 +81,7 @@ export class ReposService {
             ]
           };
           break;
-        case routerUrl.toString().startsWith("/datatypes/" + repoMethod):
+        case routerUrl.toString().startsWith("/datatypes/"):
         
           params = {
             title:"Types de données",
@@ -94,7 +94,7 @@ export class ReposService {
             ]
           };
           break;
-        case routerUrl.toString().startsWith("/langs/" + repoMethod):
+        case routerUrl.toString().startsWith("/langs/"):
         
           params = {
             title:"Languages",
@@ -112,7 +112,7 @@ export class ReposService {
   }
   private extractData(res: Response) {
     let body = res.json();
-    console.log(body);
+    //console.log(body);
     return body || { };
   }
   private handleError (error: Response | any) {

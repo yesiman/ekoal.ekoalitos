@@ -1,5 +1,5 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
-import { Icomp } from 'app/icomp';
+import { Icomp } from './common/icomp';
 
 @Component({
   selector: 'fileinputcomponent',

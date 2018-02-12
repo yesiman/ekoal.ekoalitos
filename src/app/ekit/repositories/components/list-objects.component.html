@@ -1,0 +1,70 @@
+<div class="row actionBar">
+    <div class="col-lg-6 lcol">
+        <input type="text" id="text-input" name="text-input" (keyup)="inputValueChange($event)" [(ngModel)]="value" class="form-control" placeholder="Text">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Tri:</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              
+              
+              <button  *ngFor="let p of gabIn.data.props" class="dropdown-item">{{p.lib}}</button>
+              
+            </div>
+          </div>
+    </div>
+    <div class="col-lg-6 rcol">
+        
+      
+      <button class="btn btn-outline-primary"  (click)="import()" *ngIf="gabIn.canImport"> 
+    
+        Importer <i class="fa fa-times"></i>
+      </button> 
+    
+      <div ngbDropdown class="d-inline-block" *ngIf="gabIn.canExport">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Exporter </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item">Action - 1</button>
+            <button class="dropdown-item">Another Action</button>
+            <button class="dropdown-item">Something else is here</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+<table class="table table-hover table-sm">
+    <thead>
+        <tr>
+          
+          <!--ACTIONS-->
+          <th *ngFor="let p of gabIn.data.props">
+              {{p.lib}}
+            </th>
+          <th *ngIf="gabIn.checkable">
+              
+            </th>
+          <th *ngIf="gabIn.editable">
+            
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+            
+          <td>
+            {{item.lib}}
+          </td>
+          <td *ngIf="gabIn.checkable">
+              <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                  <input type="checkbox" class="custom-control-input"  (click)="checkMe(item._id)">
+                  <span class="custom-control-indicator"></span>
+                </label>
+            </td>
+          <!--ACTIONS-->
+          <td *ngIf="gabIn.editable">
+              <a  routerLinkActive="active" [routerLink]="['/' + gabIn.data.repo + '/edit/' + item._id]"><button class="btn btn-primary btn-sm" data-style="slide-down" [ladda]="item.editClicked" (click)="edit(item)"><i class="icon-pencil"></i></button></a>
+              <button class="btn btn-danger btn-sm" data-style="slide-down" [ladda]="item.remClicked" (click)="remove(item)"><i class="icon-close"></i></button>
+            </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination size="sm" [(collectionSize)]="tabOptions.collectionSize" (pageChange)="onPageChange($event)" [(page)]="tabOptions.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

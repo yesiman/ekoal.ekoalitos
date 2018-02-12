@@ -1,6 +1,6 @@
 import { Component,Input,Output,EventEmitter, OnInit } from '@angular/core';
-import { SharedService } from '../../services/shared.service';
-import { Icomp } from 'app/icomp';
+import { SharedService } from '../../shared/services/shared.service';
+import { Icomp } from './common/icomp';
 
 @Component({
   selector: 'enuminputcomponent',

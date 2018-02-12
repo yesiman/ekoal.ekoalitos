@@ -22,8 +22,20 @@ export class ReposListComponent implements OnInit {
   private filters = {
     text:""
   };
+  gab:any = {
+    data: {
+        repo:"objects",
+        proto:"x"
+    },
+    checkable:false,
+    canImport:true,
+    canExport:true,
+    editable:true
+  }
   //
-  constructor(private reposService:ReposService,private router: Router) {}
+  constructor(private reposService:ReposService,private router: Router) {
+    
+  }
   //
   onPageChange(event){
     this.tabOptions.currentPage = event;
@@ -68,6 +80,17 @@ export class ReposListComponent implements OnInit {
     //
     this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"list");
     this.propsList = this.params.props.filter(p => p.showList === true);
+    this.gab = {
+      data: {
+          repo:this.params.repoName,
+          props:this.propsList,
+          proto:"x"
+      },
+      checkable:false,
+      canImport:true,
+      canExport:true,
+      editable:true
+    }
     this.loadPage(this.filters);
   }
 }

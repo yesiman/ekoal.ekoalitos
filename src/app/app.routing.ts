@@ -34,15 +34,15 @@ export const routes: Routes = [
       },
       {
         path: 'prototypes',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'prototypes/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'projects',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'project',
@@ -50,47 +50,47 @@ export const routes: Routes = [
       },
       {
         path: 'projects/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'properties',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'properties/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'objects',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'objects/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'users',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'users/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'datatypes',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'datatypes/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'langs',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'langs/edit/:okey',
-        loadChildren: './repositories/repositories.module#ReposModule'
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
         path: 'icons',

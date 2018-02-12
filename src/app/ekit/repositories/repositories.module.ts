@@ -5,15 +5,15 @@ import { LaddaModule } from 'angular2-ladda';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { CompLabelComponent } from "../shared/inputs-controls/common/comp-label.component" 
-import { LongTextInputComponent } from '../shared/inputs-controls/components/longtext.component';
-import { TextInputComponent } from '../shared/inputs-controls/components/text.component';
-import { DateInputComponent } from '../shared/inputs-controls/components/date.component';
-import { DateTimeInputComponent } from '../shared/inputs-controls/components/datetime.component';
-import { BooleanInputComponent } from '../shared/inputs-controls/components/boolean.component';
-import { TimeInputComponent } from '../shared/inputs-controls/components/time.component';
-import { EnumInputComponent } from '../shared/inputs-controls/components/enum.component';
-import { FileInputComponent } from '../shared/inputs-controls/components/file.component';
+import { CompLabelComponent } from "../inputs/common/comp-label.component" 
+import { LongTextInputComponent } from '../inputs/longtext.component';
+import { TextInputComponent } from '../inputs/text.component';
+import { DateInputComponent } from '../inputs/date.component';
+import { DateTimeInputComponent } from '../inputs/datetime.component';
+import { BooleanInputComponent } from '../inputs/boolean.component';
+import { TimeInputComponent } from '../inputs/time.component';
+import { EnumInputComponent } from '../inputs/enum.component';
+import { FileInputComponent } from '../inputs/file.component';
 
 import { ReposEditComponent } from './components/repositories-edit.component';
 import { ReposListComponent } from './components/repositories-list.component';
@@ -21,7 +21,8 @@ import { ReposListComponent } from './components/repositories-list.component';
 
 
 import { ReposRoutingModule } from './repositories-routing.module';
-import { ModRepoListComponent } from 'app/repositories/modals/modRepoList/mod-repo-list.component';
+import { ModRepoListComponent } from 'app/ekit/repositories/modals/modRepoList/mod-repo-list.component';
+import { ListObjectsComponent } from 'app/ekit/repositories/components/list-objects.component';
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @NgModule({
@@ -40,7 +41,7 @@ import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group
     EnumInputComponent,
     FileInputComponent,
     ReposEditComponent,
-    ReposListComponent,ModRepoListComponent 
+    ReposListComponent,ModRepoListComponent,ListObjectsComponent,
   ],
   entryComponents: [
       ModRepoListComponent,

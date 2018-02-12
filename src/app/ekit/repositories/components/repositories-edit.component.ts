@@ -4,10 +4,10 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ReposService } from '../services/repositories.service';
-import { SharedService } from '../../shared/services/shared.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { ModRepoListComponent } from 'app/repositories/modals/modRepoList/mod-repo-list.component';
+import { ModRepoListComponent } from 'app/ekit/repositories/modals/modRepoList/mod-repo-list.component';
 
 @Component({
 selector:'repositories-edit',
@@ -22,7 +22,7 @@ export class ReposEditComponent implements OnInit {
   item:any = {};
   saving:boolean = false;
   test:String;
-
+  
   constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
     //
     this.route
@@ -34,7 +34,7 @@ export class ReposEditComponent implements OnInit {
     });
   }
 
-  open() {
+  import() {
     
 
 

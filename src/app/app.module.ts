@@ -26,6 +26,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import { SharedService } from './shared/services/shared.service';
 import { CookieService } from 'ng2-cookies';
+import { ReposService } from 'app/ekit/repositories/services/repositories.service';
  
 
 @NgModule({
@@ -49,7 +50,7 @@ import { CookieService } from 'ng2-cookies';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  },SharedService,CookieService],
+  },SharedService,CookieService,ReposService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

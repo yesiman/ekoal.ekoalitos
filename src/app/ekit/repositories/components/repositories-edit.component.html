@@ -4,6 +4,10 @@
       
   <!--/.row-->
   <div class="row">
+
+
+
+
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
@@ -14,6 +18,8 @@
             <a href="#" class="btn-close"><i class="icon-close"></i></a>
           </div>
         </div>
+        <div class="card-body">
+            
         <ngb-tabset type="pills">
           <ngb-tab>
             <ng-template ngbTabTitle><i class="icon-screen-desktop"></i> Informations principales</ng-template>
@@ -36,10 +42,7 @@
                   <hr>
                 </div>
                 <!--END.MENU DYNAMIC GENERATION-->
-                <div class="form-actions">
-                  <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
-                  <button class="btn btn-default" type="button">Cancel</button>
-                </div>
+                
               </form>
             </ng-template>
           </ngb-tab>
@@ -58,7 +61,7 @@
                           </div>
                         </div>
                   </div>
-                  <div class="col-lg-6 rcol"><button class="btn btn-outline-primary"  (click)="open()">
+                  <div class="col-lg-6 rcol"><button class="btn btn-outline-primary"  (click)="import()">
                   
                       Importer <i class="fa fa-times"></i>
                     </button></div>
@@ -126,6 +129,13 @@
             </ng-template>
           </ngb-tab>
         </ngb-tabset>
+      </div>
+      <div class="card-footer">
+        <div class="form-actions">
+          <button type="button" [ladda]="saving" (click)="valid()" class="btn btn-primary">Valider</button>
+          <button class="btn btn-default" type="button">Cancel</button>
+        </div>
+      </div>
       </div>
     </div>
   </div>

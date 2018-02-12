@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { LongTextInputComponent } from './components/longtext.component';
-import { TextInputComponent } from './components/text.component';
+import { LongTextInputComponent } from './inputs/longtext.component';
+import { TextInputComponent } from './inputs/text.component';
 
 @NgModule({
   imports: [  ],
