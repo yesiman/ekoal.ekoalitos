@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReposService } from '../../services/repositories.service';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
 
 @Component({
   selector: 'mod-repo-list',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: 'mod-repo-list.component.html'
 })
 export class ModRepoListComponent  {
+  sels:any = [];
   private tabOptions:any = {
     collectionSize:0,
     currentPage:1
@@ -20,11 +22,12 @@ export class ModRepoListComponent  {
     text:""
   };
   gab:any;
-constructor(private reposService:ReposService,private router: Router) {
+constructor(private reposService:ReposService,private router: Router, public activeModal: NgbActiveModal) {
   //
   var params:any = this.reposService.getStdMenuItemChildsParams("/datatypes/","list");
   var propsList = params.props.filter(p => p.showList === true);
   //
+  
   this.gab = {
     data: {
         repo:"properties",
@@ -38,7 +41,11 @@ constructor(private reposService:ReposService,private router: Router) {
   }
   //
 }
-  
+private childSelChange(data)
+{
+    console.log("jkljkl",data);
+    //this.onChildSelChange.emit({ sels:this.checkedItems});
+}
   //
   ngOnInit(): void {
     //
@@ -65,5 +72,8 @@ constructor(private reposService:ReposService,private router: Router) {
     this.itemsLength = 
       this.tabOptions.collectionSize = 
       datas.count; 
+  }
+  closeMe() {
+    this.activeModal.close(this.sels);
   }
 }

@@ -59,9 +59,9 @@
                 </label>
             </td>
           <!--ACTIONS-->
-          <td *ngIf="gabIn.editable">
-              <a  routerLinkActive="active" [routerLink]="['/' + gabIn.data.repo + '/edit/' + item._id]"><button class="btn btn-primary btn-sm" data-style="slide-down" [ladda]="item.editClicked" (click)="edit(item)"><i class="icon-pencil"></i></button></a>
-              <button class="btn btn-danger btn-sm" data-style="slide-down" [ladda]="item.remClicked" (click)="remove(item)"><i class="icon-close"></i></button>
+          <td >
+              <a *ngIf="gabIn.editable" routerLinkActive="active" [routerLink]="['/' + gabIn.data.repo + '/edit/' + item._id]"><button class="btn btn-primary btn-sm" data-style="slide-down" [ladda]="item.editClicked" (click)="edit(item)"><i class="icon-pencil"></i></button></a>
+              <button *ngIf="gabIn.removable" class="btn btn-danger btn-sm" data-style="slide-down" [ladda]="item.remClicked" (click)="remove(item)"><i class="icon-close"></i></button>
             </td>
 
         </tr>

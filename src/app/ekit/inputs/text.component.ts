@@ -9,8 +9,9 @@ import { Icomp } from './common/icomp';
 })
 export class TextInputComponent implements Icomp {
   @Input() value: any;
-  @Output() valueChange = new EventEmitter<Object>();
   @Input() model: string;
+  @Output() valueChange = new EventEmitter<Object>();
+  
 
   inputValueChange(event)
   {

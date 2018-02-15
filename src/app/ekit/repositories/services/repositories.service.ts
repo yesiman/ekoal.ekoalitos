@@ -19,6 +19,7 @@ export class ReposService {
                     .catch(this.handleError);
   }
   getAll(repoName,page,data): Observable<any[]> {
+    console.log(data);
     return this.http.post(this.sharedService.apiBasUrl + "repos/" + repoName + "/"+page+"/10", data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);

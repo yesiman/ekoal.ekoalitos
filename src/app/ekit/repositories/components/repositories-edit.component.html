@@ -49,54 +49,7 @@
           <ngb-tab *ngIf="this.params.repoName == 'prototypes'">
             <ng-template ngbTabTitle><i class="icon-drop"></i> Propriétés <span class="badge badge-pill badge-danger">29</span></ng-template>
             <ng-template ngbTabContent>
-                <div class="row  actionBar">
-                  <div class="col-lg-6 lcol">
-                      <input type="text" id="text-input" name="text-input" (keyup)="inputValueChange($event)" [(ngModel)]="value" class="form-control" placeholder="Text">
-                      <div ngbDropdown class="d-inline-block">
-                          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button class="dropdown-item">Action - 1</button>
-                            <button class="dropdown-item">Another Action</button>
-                            <button class="dropdown-item">Something else is here</button>
-                          </div>
-                        </div>
-                  </div>
-                  <div class="col-lg-6 rcol"><button class="btn btn-outline-primary"  (click)="import()">
-                  
-                      Importer <i class="fa fa-times"></i>
-                    </button></div>
-                  
-              </div>
-                  <table class="table table-hover table-sm">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <list-objects #loProps [gabIn]="gabProps"></list-objects>
             </ng-template>
           </ngb-tab>
           <ngb-tab *ngIf="this.params.repoName == 'prototypes'">

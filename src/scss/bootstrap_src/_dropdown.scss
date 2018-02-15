@@ -119,7 +119,7 @@
 // menu with the parent.
 .dropdown-menu-right {
   right: 0;
-  left: auto; // Reset the default from `.dropdown-menu`
+  left: auto !important; // Reset the default from `.dropdown-menu`
 }
 
 .dropdown-menu-left {

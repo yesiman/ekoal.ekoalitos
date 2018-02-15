@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -16,49 +16,68 @@ styleUrls: ['repositories-edit.scss'],
   providers: [ ReposService ]
 })
 export class ReposEditComponent implements OnInit {
-
+    @ViewChild('loProps') loProps;
   private params:any;
+  private propsParams:any;
   private okey:any;
+  gabProps:any;
+  //
   item:any = {};
   saving:boolean = false;
   test:String;
   
   constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
-    //
+    //GET OBJECT ID TO RETRIEVED
+    //PASSED AS PARAMETER
     this.route
-    .params
-    .subscribe(params => {
-        this.okey = params['okey'];
-        this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
-        
-    });
+        .params
+        .subscribe(params => {
+            this.okey = params['okey'];
+            this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
+            this.propsParams = this.reposService.getStdMenuItemChildsParams("/properties/","edit");
+            //console.log()
+            //IF IN GABARIT !
+            
+        });
   }
 
-  import() {
-    
-
-
-    this.modalService.open(ModRepoListComponent).result.then((result) => {
-      //this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  initPrototypeMode(datas) {
+    this.gabProps = {
+        data: {
+            datas:datas,
+            repo:"properties",
+            props:this.propsParams.props.filter(p => p.showList === true),
+            proto:"x"
+        },
+        checkable:false,
+        canImport:true,
+        canExport:false,
+        editable:false,
+        removable:true
+    }
   }
-
   ngOnInit(): void {
     //
-    
-    
     if (this.okey != "-1")
     {
+        //LOAD OBJECT IF EXIST
         this.reposService.get(this.params.repoName,this.okey)
-        .subscribe(
-          data  => this.item = data,
-          error =>  console.log(error));
+            .subscribe(
+                data  => {
+                    this.item = data;
+                    this.initPrototypeMode(this.item.props);
+                },
+                error =>  console.log(error));
     }
-    
+    else {
+        this.initPrototypeMode([]);
+    }
   }
-
+  private backValueChange(event)
+    {
+        alert("kmlk");
+      //this.valueChange.emit(this.sels);
+    }
   private onDataSave()
   {
     this.saving = false;
@@ -133,6 +152,11 @@ export class ReposEditComponent implements OnInit {
     //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3",null);
     //console.log(this.item);
     this.saving = true;
+    //ID MODE PROTOTYPE
+    if (this.params.repoName == 'prototypes')
+    {
+        this.item.props = this.gabProps.data.datas;//.getDatas();
+    }
     this.reposService.add(this.params.repoName, this.item)
       .subscribe(
         data  => this.onDataSave(),

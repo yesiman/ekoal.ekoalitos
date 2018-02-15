@@ -10,7 +10,7 @@
               <ngb-tabset [justify]="currentJustify">
                   <ngb-tab title="Propriétés">
                     <ng-template ngbTabContent>
-                        <list-objects [gabIn]="gab"></list-objects>
+                        <list-objects [sels]="sels" [gabIn]="gab"></list-objects>
                     </ng-template>
                   </ngb-tab>
                 
@@ -49,5 +49,5 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeMe()">Close</button>
   </div>

@@ -7,6 +7,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { SharedService } from '../shared/services/shared.service';
 import { LayoutService } from './layout.service';
+import { ReposService } from 'app/ekit/repositories/services/repositories.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,32 @@ import { LayoutService } from './layout.service';
 export class FullLayoutComponent implements OnInit {
 
   @Input() menuItems: any[];  
+  langs:any;
+  
 
+  constructor(private layoutService:LayoutService,private sharedService:SharedService,private reposService:ReposService) {
+    this.menuItems = [];
+    this.sharedService.getUserViaCokies();
+    if (this.sharedService.user.token)
+    {
+      //
+    this.layoutService.getProjects()
+    .subscribe(
+      data  => this.bindMenu(data),
+      error =>  console.log(error));
+    //
+    this.reposService.getAll("langs",1, {})
+      .subscribe(
+        data  => this.bindLangs(data),
+        error =>  console.log(error));
+    }else {
+      //BAKC TO AUTH
+    }
+
+    
+  }
+  //
+  public disabled: boolean = false;
   private bindMenu(data)
   {
     var it = { id:1,lib:"Projets",childs:[],routeMasterAdd:"/projects/edit"};
@@ -33,27 +59,9 @@ export class FullLayoutComponent implements OnInit {
     it.childs.push(this.layoutService.getStdMenuItemChilds("26","Langues","icon-flag","#f78c40","/langs/edit/-1","/langs/list","",true));
     this.menuItems.push(it);
   }
-
-  constructor(private layoutService:LayoutService,private sharedService:SharedService) {
-    this.menuItems = [];
-    this.sharedService.getUserViaCokies();
-    this.layoutService.getProjects()
-        .subscribe(
-          data  => this.bindMenu(data),
-          error =>  console.log(error));
-  }
-  //
-  public disabled: boolean = false;
-  public status: {isopen: boolean} = {isopen: false};
-  //
-  public toggled(open: boolean): void {
-    console.log('Dropdown is now: ', open);
-  }
-
-  public toggleDropdown($event: MouseEvent): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.status.isopen = !this.status.isopen;
+  private bindLangs(data)
+  {
+    this.langs = data.items;
   }
 
   ngOnInit(): void {}

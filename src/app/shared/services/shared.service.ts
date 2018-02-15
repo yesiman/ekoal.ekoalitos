@@ -8,7 +8,7 @@ import { CookieService } from 'ng2-cookies';
 @Injectable()
 export class SharedService {
   public user:any = null;
-  public apiBasUrl:string = "https://ekoalit-os-srv.herokuapp.com/";
+  public apiBasUrl:string = 'https://ekoalit-os-srv.herokuapp.com/';
   public vizLayout:boolean = false;
   constructor (private http: Http, private cook:CookieService) {
 
