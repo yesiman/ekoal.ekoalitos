@@ -20,19 +20,23 @@ export class ReposEditComponent implements OnInit {
   private params:any;
   private propsParams:any;
   private okey:any;
+  private pkey:any;
   gabProps:any;
   //
   item:any = {};
+  proto:any = {};
   saving:boolean = false;
   test:String;
   
   constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
+    
     //GET OBJECT ID TO RETRIEVED
     //PASSED AS PARAMETER
     this.route
         .params
         .subscribe(params => {
             this.okey = params['okey'];
+            this.pkey = params['pkey'];
             this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"edit");
             this.propsParams = this.reposService.getStdMenuItemChildsParams("/properties/","edit");
             //console.log()
@@ -42,23 +46,25 @@ export class ReposEditComponent implements OnInit {
   }
 
   initPrototypeMode(datas) {
-    this.gabProps = {
-        data: {
-            datas:datas,
-            repo:"properties",
-            props:this.propsParams.props.filter(p => p.showList === true),
-            proto:"x"
-        },
-        checkable:false,
-        canImport:true,
-        canExport:false,
-        editable:false,
-        removable:true
+    if (this.params.repoName == 'prototypes')
+    {
+        this.gabProps = {
+            data: {
+                datas:datas,
+                repo:"properties",
+                props:this.propsParams.props.filter(p => p.showList === true),
+                proto:"x"
+            },
+            checkable:false,
+            canImport:true,
+            canExport:false,
+            editable:false,
+            removable:true
+        }
     }
   }
   ngOnInit(): void {
-    //
-    if (this.okey != "-1")
+    if (this.okey)
     {
         //LOAD OBJECT IF EXIST
         this.reposService.get(this.params.repoName,this.okey)
@@ -66,16 +72,67 @@ export class ReposEditComponent implements OnInit {
                 data  => {
                     this.item = data;
                     this.initPrototypeMode(this.item.props);
+                    if (this.params.repoName == 'objects')
+                    {
+                        //On doit loader le proto
+                        this.loadProto(this.item.protoid);
+                    }
                 },
                 error =>  console.log(error));
     }
     else {
+        //ID MODE NEW PROTO
         this.initPrototypeMode([]);
+        
+        if (this.pkey)
+        {
+            this.loadProto(this.pkey);
+        }
     }
+  }
+  loadProto(pkey) {
+    //IF PKEY ALOORS DE CREATION NOUVEL OBJET
+    //GET PROTO
+    this.reposService.get("prototypes",pkey)
+        .subscribe(
+            data  => {
+                this.proto = data;
+                //LOAD PROPS ET GENERATION DU GABARIT
+                this.reposService.getAll("properties",1,{filters:{
+                    text:"",
+                    ids:this.proto.props
+                }})
+                    .subscribe(
+                        data  => {
+                            //LOAD PROPS ET GENERATION DU GABARIT
+                            var tmp:any;
+                            tmp = data;
+                            tmp = tmp.items;
+                            //GENERATION PROPS POUR FORM
+                            var props = [];
+                            for (var i = 0;i < tmp.length;i++)
+                            {
+                                var type = "";
+                                switch (tmp[i].type)
+                                {
+                                    case "":
+                                        break;
+                                    default:
+                                        type = "text";
+                                }
+                                props.push({
+                                    type:type,lib:tmp[i].lib,tooltip:tmp[i].desc,model:tmp[i]._id,showList:true
+                                });
+                            }
+                            this.params.props = props;
+                        },
+                        error =>  console.log(error));
+            },
+            error =>  console.log(error));
   }
   private backValueChange(event)
     {
-        alert("kmlk");
+        
       //this.valueChange.emit(this.sels);
     }
   private onDataSave()
@@ -147,7 +204,9 @@ export class ReposEditComponent implements OnInit {
           xhr.send(formData)
       }));
   }
-
+  addObject() {
+    this.router.navigate(['/objects/new/' + this.item._id]);
+  }
   valid(){
     //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3",null);
     //console.log(this.item);
@@ -155,7 +214,17 @@ export class ReposEditComponent implements OnInit {
     //ID MODE PROTOTYPE
     if (this.params.repoName == 'prototypes')
     {
-        this.item.props = this.gabProps.data.datas;//.getDatas();
+        if (this.gabProps && this.gabProps.data && this.gabProps.data.datas)
+        {
+            this.item.props = this.gabProps.data.datas;//.getDatas();
+        }
+        else {
+            this.item.props = [];
+        }
+    }
+    if ((this.params.repoName == 'objects') && (this.pkey)) {
+        //SI NOUVEL OBJECT ON STOCK LE TYPE PROTO
+        this.item.protoid = this.pkey;
     }
     this.reposService.add(this.params.repoName, this.item)
       .subscribe(

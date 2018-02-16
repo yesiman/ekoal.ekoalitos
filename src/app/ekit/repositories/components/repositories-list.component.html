@@ -6,10 +6,9 @@
         <div class="card-header">
           <i class="fa fa-align-justify"></i> {{params.title}}
           <div class="card-actions">
-            <div href="#"><input type="text" placeholder="Filtre..." [(ngModel)]="filters.text" (ngModelChange)="filtersChange($event)"/></div>
-            <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
-            <a href="#" class="btn-minimize"><i class="icon-arrow-up"></i></a>
-            <a href="#" class="btn-close"><i class="icon-close"></i></a>
+            <!--<a href="#" class="btn-setting"><i class="icon-settings"></i></a>
+            <a href="#" class="btn-minimize"><i class="icon-arrow-up"></i></a>-->
+            <a href="#" class="btn-add" ngbTooltip="Nouveau"><i class="icon-plus"></i></a>
           </div>
         </div>
         <div class="card-body">

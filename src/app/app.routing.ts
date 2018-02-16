@@ -37,6 +37,10 @@ export const routes: Routes = [
         loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {
+        path: 'prototypes/new',
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
+      },
+      {
         path: 'prototypes/edit/:okey',
         loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
@@ -62,6 +66,10 @@ export const routes: Routes = [
       },
       {
         path: 'objects',
+        loadChildren: './ekit/repositories/repositories.module#ReposModule'
+      },
+      {
+        path: 'objects/new/:pkey',
         loadChildren: './ekit/repositories/repositories.module#ReposModule'
       },
       {

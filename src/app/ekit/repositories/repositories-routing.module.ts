@@ -13,10 +13,17 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'edit/:okey',
+        path: 'new/:pkey',
         component: ReposEditComponent,
         data: {
           title: 'Nouveau'
+        }
+      },
+      {
+        path: 'edit/:okey',
+        component: ReposEditComponent,
+        data: {
+          title: 'Edition'
         }
       },
       {

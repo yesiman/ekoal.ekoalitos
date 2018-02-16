@@ -33,6 +33,8 @@
     "@angular/upgrade": "4.1.1",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.6",
     "@ngtools/webpack": "1.9.5",
+    "@ngx-translate/core": "^8.0.0",
+    "@ngx-translate/http-loader": "^2.0.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular2-ladda": "^1.2.1",
