@@ -7,8 +7,6 @@ import { SocialButtonsComponent } from './social-buttons.component';
 import { SwitchesComponent } from './switches.component';
 import { TablesComponent } from './tables.component';
 
-// Modal Component
-import { ModalsComponent } from './modals.component';
 
 // Tabs Component
 import { TabsComponent } from './tabs.component';
@@ -24,7 +22,6 @@ import { ComponentsRoutingModule } from './components-routing.module';
     ButtonsComponent,
     CardsComponent,
     FormsComponent,
-    ModalsComponent,
     SocialButtonsComponent,
     SwitchesComponent,
     TablesComponent,

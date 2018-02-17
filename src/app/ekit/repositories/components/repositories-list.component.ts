@@ -13,7 +13,7 @@ export class ReposListComponent implements OnInit {
   private items:any = [];
   private itemsLength:number = 0;
   //
-  private params:any;
+  params:any;
   private propsList:any;
   private tabOptions:any = {
       collectionSize:0,

@@ -26,10 +26,10 @@ import { Component,Input } from '@angular/core';
 export class MenuGroupComponent {
   //
   @Input() menuGroupItem: any;
-  private isCollapsed:boolean = true;
-  private iconClass:string = "icon-arrow-left-circle";
+  isCollapsed:boolean = true;
+  iconClass:string = "icon-arrow-left-circle";
   //
-  private switchCollapse()
+  switchCollapse()
   {
     this.isCollapsed = !this.isCollapsed;
     switch (this.isCollapsed)

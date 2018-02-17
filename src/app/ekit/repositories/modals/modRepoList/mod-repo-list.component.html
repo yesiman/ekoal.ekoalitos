@@ -1,13 +1,13 @@
 <div class="modal-header">
     <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
       <div class="row">
           <div class="col-lg-12">
-              <ngb-tabset [justify]="currentJustify">
+              <ngb-tabset>
                   <ngb-tab title="Propriétés">
                     <ng-template ngbTabContent>
                         <list-objects [sels]="sels" [gabIn]="gab"></list-objects>

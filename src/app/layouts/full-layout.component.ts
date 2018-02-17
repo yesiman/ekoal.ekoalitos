@@ -20,7 +20,7 @@ export class FullLayoutComponent implements OnInit {
   langs:any;
   
 
-  constructor(private layoutService:LayoutService,private sharedService:SharedService,private reposService:ReposService) {
+  constructor(private layoutService:LayoutService,public sharedService:SharedService,private reposService:ReposService) {
     this.menuItems = [];
     this.sharedService.getUserViaCokies();
     if (this.sharedService.user.token)

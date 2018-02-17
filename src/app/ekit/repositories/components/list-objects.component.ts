@@ -20,13 +20,13 @@ export class ListObjectsComponent implements OnInit {
   
     @Input() gabIn: any;
     @Input() sels:any = [];
-    private tabOptions:any = {
+    tabOptions:any = {
         collectionSize:0,
         currentPage:1
       };
       //
-      private items:any = [];
-      private itemsLength:number = 0;
+      items:any = [];
+      itemsLength:number = 0;
       //
       private filters:any = {
         text:""

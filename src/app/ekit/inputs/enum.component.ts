@@ -11,7 +11,7 @@ export class EnumInputComponent implements OnInit, Icomp {
   @Output() valueChange = new EventEmitter<Object>();
   @Input() model: string;
 
-  private datas:any = [];
+  datas:any = [];
 
   inputValueChange(event)
   {

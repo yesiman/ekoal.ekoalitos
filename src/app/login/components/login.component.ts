@@ -16,8 +16,8 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent {
   private parentRouter:Router;
-  private logReq:boolean = false;
-  private user:any = {};
+  logReq:boolean = false;
+  user:any = {};
   constructor(private loginService:LoginService,private router: Router,
     private sharedService:SharedService) {
     this.parentRouter = router;

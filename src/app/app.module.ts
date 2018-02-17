@@ -4,6 +4,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule }    from '@angular/http';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 
+import { CoreUIAppComponent } from '../app/core-ui.component';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule } from '@angular/forms';
@@ -49,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   declarations: [
     AppComponent,
+    CoreUIAppComponent,
     LoginComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,

@@ -18,8 +18,8 @@ styleUrls: ['repositories-edit.scss'],
 })
 export class ReposEditComponent implements OnInit {
     @ViewChild('loProps') loProps;
-  private params:any;
-  private propsParams:any;
+    params:any;
+propsParams:any;
   private okey:any;
   private pkey:any;
   gabProps:any;
