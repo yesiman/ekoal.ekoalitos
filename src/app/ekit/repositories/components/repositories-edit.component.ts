@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/Observable';
 
 import { ReposService } from '../services/repositories.service';
 import { SharedService } from '../../../shared/services/shared.service';
@@ -110,15 +111,33 @@ export class ReposEditComponent implements OnInit {
                             tmp = tmp.items;
                             //GENERATION PROPS POUR FORM
                             var props = [];
+                            console.log("tmp",tmp);
                             for (var i = 0;i < tmp.length;i++)
                             {
                                 var type = "";
                                 switch (tmp[i].type)
                                 {
-                                    case "":
+                                    case "5912f7034c3181110079e09e":
+                                        type = "text";
+                                        break;
+                                    case "5912f7194c3181110079e09f":
+                                        type = "longtext";
+                                        break;
+                                    case "5912f6f74c3181110079e09f":
+                                        type = "time";
+                                        break;
+                                    case "5912f8144c3181110079e0a4":
+                                        type = "boolean";
+                                        break;
+                                    case "5912f7284c3181110079e0a1":
+                                        type = "file";
+                                        break;
+                                    case "5912f82d4c3181110079e0a6":
+                                        type = "enum";
                                         break;
                                     default:
-                                        type = "text";
+                                        type = "";
+                                        break;
                                 }
                                 props.push({
                                     type:type,lib:tmp[i].lib,tooltip:tmp[i].desc,model:tmp[i]._id,showList:true
@@ -146,21 +165,37 @@ export class ReposEditComponent implements OnInit {
     console.log("data",data);
      this.upload(file,data.signedRequest,"");
   }
-
+  getModelType(mid) {
+    for (var i = 0;i < this.params.props.length;i++)
+    {
+        if (this.params.props[i].model == mid)
+        {
+            return this.params.props[i].type;
+        }
+    }
+  }
   private inpValueChange(value)
   {
-      this.item[value.model] = value.value;
+    console.log("Files",value);
+    this.item[value.model] = value.value;  
+    console.log("value.value",value.value);
+    if (this.getModelType(value.model) == "file")
+      {
+        //console.log("value.value(0)",value.value.FileList[0]);
+        this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3/?file-name=16&file-type=image/jpeg",value.value)
+            .subscribe(
+                data  => this.s3SignOk(data,value.value.FileList.file),
+                error => console.log(error));
+      }
       
-    //console.log("Files",value);
-    //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3/?file-name=16&file-type=image/jpeg",value)
-    //  .subscribe(
-    //      data  => this.s3SignOk(data,value[0]),
-    //      error => console.log(error));
+      
+    //
+    //
   }
     
   upload(file, signedRequest, url) {
       return Observable.fromPromise(new Promise((resolve, reject) => {
-          let xhr = new XMLHttpRequest();
+          var xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                   if (xhr.status === 200) {
@@ -183,22 +218,26 @@ export class ReposEditComponent implements OnInit {
   }
 
   makeFileRequest(url: string, files: Array<File>) {
+      console.log("url",url);
+      console.log("files",files);
       return Observable.fromPromise(new Promise((resolve, reject) => {
-          let formData: any = new FormData()
-          let xhr = new XMLHttpRequest()
-          for (let file of files) {
-            console.log(file.name);
+        var formData: any = new FormData()
+        var xhr = new XMLHttpRequest()
+          for (var file of files) {
               formData.append("uploads[]", file, file.name)
           }
+          
           xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                   if (xhr.status === 200) {
                       resolve(JSON.parse(xhr.response))
                   } else {
+                      console.log("rejected");
                       reject(xhr.response)
                   }
               }
           }
+          console.log("this.sharedService.user.token",this.sharedService.user.token);
           xhr.open("POST", url, true)
           xhr.setRequestHeader("x-access-token",this.sharedService.user.token);
           xhr.send(formData)

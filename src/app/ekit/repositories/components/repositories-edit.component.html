@@ -45,7 +45,7 @@
             </ng-template>
           </ngb-tab>
           <ngb-tab *ngIf="this.params.repoName == 'prototypes'">
-            <ng-template ngbTabTitle><i class="icon-drop"></i> Propriétés <span class="badge badge-pill badge-danger">29</span></ng-template>
+            <ng-template ngbTabTitle><i class="icon-drop"></i> Propriétés <span class="badge badge-pill badge-danger">{{this.item.props.length}}</span></ng-template>
             <ng-template ngbTabContent>
               <list-objects #loProps [gabIn]="gabProps"></list-objects>
             </ng-template>
