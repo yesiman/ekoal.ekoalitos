@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ReposService } from '../../services/repositories.service';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'mod-repo-list',
@@ -22,15 +23,15 @@ export class ModRepoListComponent  {
     text:""
   };
   gab:any;
-constructor(private reposService:ReposService,private router: Router, public activeModal: NgbActiveModal) {
+constructor(private reposService:ReposService,private router: Router, public activeModal: NgbActiveModal,public shar:SharedService) {
   //
-  var params:any = this.reposService.getStdMenuItemChildsParams("/datatypes/","list");
+  var params:any = this.reposService.getStdMenuItemChildsParams("/"+this.shar.currentRepo+"/","list");
   var propsList = params.props.filter(p => p.showList === true);
   //
   
   this.gab = {
     data: {
-        repo:"properties",
+        repo:this.shar.currentRepo,
         props:propsList,
         proto:"x"
     },
@@ -39,6 +40,7 @@ constructor(private reposService:ReposService,private router: Router, public act
     canExport:false,
     editable:false
   }
+  
   //
 }
 private childSelChange(data)
@@ -51,28 +53,13 @@ private childSelChange(data)
     //
     //this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"list");
     //this.propsList = this.params.props.filter(p => p.showList === true);
-    this.loadPage(this.filters);
+    //this.loadPage(this.filters);
   }
   onPageChange(event){
     this.tabOptions.currentPage = event;
-    this.loadPage({filters:this.filters});
+   
   }
-  //
-  loadPage(filters)
-  {
-    this.reposService.getAll("datatypes",this.tabOptions.currentPage, filters)
-        .subscribe(
-          data  => this.dataPageLoaded(data),
-          error =>  console.log(error));
-  }
-  //
-  dataPageLoaded(datas)
-  {
-    this.items = datas.items;
-    this.itemsLength = 
-      this.tabOptions.collectionSize = 
-      datas.count; 
-  }
+  
   closeMe() {
     this.activeModal.close(this.sels);
   }

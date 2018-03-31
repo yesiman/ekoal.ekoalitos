@@ -7,14 +7,14 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Project'
+      title: 'Projects'
     },
     children: [
       {
-        path: ':pkey',
+        path: 'dash/:projectKey',
         component: ProjectsDashboardComponent,
         data: {
-          title: ':lib'
+          title: 'Nouveau'
         }
       }
     ]

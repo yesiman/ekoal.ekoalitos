@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-
+  ckeditorContent: string = '<p>Some html</p>';
   // constructor( ) { }
-
+  
   /*public brandPrimary: string =  '#20a8d8';
   public brandSuccess: string =  '#4dbd74';
   public brandInfo: string =   '#63c2de';
@@ -461,6 +461,7 @@ export class DashboardComponent implements OnInit {
 
 */
   ngOnInit(): void {
+    
     // generate random values for mainChart
   //  for (let i = 0; i <= this.mainChartElements; i++) {
    //   this.mainChartData1.push(this.random(50, 200));

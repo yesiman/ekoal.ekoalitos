@@ -10,6 +10,9 @@ export class SharedService {
   public user:any = null;
   public apiBasUrl:string = 'https://ekoalit-os-srv.herokuapp.com/';
   public vizLayout:boolean = false;
+  public currentProject:any = null;
+  public currentRepo:any = null;
+  
   constructor (private http: Http, private cook:CookieService) {
 
   }

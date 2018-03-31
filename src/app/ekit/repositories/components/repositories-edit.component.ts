@@ -1,8 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 
 import { ReposService } from '../services/repositories.service';
 import { SharedService } from '../../../shared/services/shared.service';
@@ -23,13 +22,15 @@ propsParams:any;
   private okey:any;
   private pkey:any;
   gabProps:any;
+  propsNb:Number = 0;
   //
   item:any = {};
   proto:any = {};
   saving:boolean = false;
   test:String;
   
-  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
+  constructor(private reposService:ReposService,private router: Router,
+    private sharedService:SharedService,private route: ActivatedRoute,private modalService: NgbModal) {
     
     //GET OBJECT ID TO RETRIEVED
     //PASSED AS PARAMETER
@@ -72,6 +73,7 @@ propsParams:any;
             .subscribe(
                 data  => {
                     this.item = data;
+                    this.propsNb = this.item.props.length;
                     this.initPrototypeMode(this.item.props);
                     if (this.params.repoName == 'objects')
                     {
@@ -111,7 +113,6 @@ propsParams:any;
                             tmp = tmp.items;
                             //GENERATION PROPS POUR FORM
                             var props = [];
-                            console.log("tmp",tmp);
                             for (var i = 0;i < tmp.length;i++)
                             {
                                 var type = "";
@@ -134,6 +135,9 @@ propsParams:any;
                                         break;
                                     case "5912f82d4c3181110079e0a6":
                                         type = "enum";
+                                        break;
+                                    case "5a782af376657811002d0416":
+                                        type = "date";
                                         break;
                                     default:
                                         type = "";
@@ -159,10 +163,16 @@ propsParams:any;
     this.saving = false;
   }
 
-  private s3SignOk(data,file)
+  private s3SignOk(data,files)
   {
-    console.log("file",file);
-    console.log("data",data);
+      var i=0;
+    //console.log("file",file);
+    for (var file of files) {
+        i++;
+        console.log("nufile-"+i);
+        this.upload(file,data.signedRequest,"");
+    }
+    //console.log("data",data);
      this.upload(file,data.signedRequest,"");
   }
   getModelType(mid) {
@@ -176,20 +186,17 @@ propsParams:any;
   }
   private inpValueChange(value)
   {
-    console.log("Files",value);
     this.item[value.model] = value.value;  
-    console.log("value.value",value.value);
     if (this.getModelType(value.model) == "file")
-      {
-        //console.log("value.value(0)",value.value.FileList[0]);
-        this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3/?file-name=16&file-type=image/jpeg",value.value)
-            .subscribe(
-                data  => this.s3SignOk(data,value.value.FileList.file),
-                error => console.log(error));
-      }
-      
-      
-    //
+    {
+    //console.log("value.value(0)",value.value.FileList[0]);
+    //Generate GUID for file
+    //Get filte-type
+    this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3/?file-name=11&file-type=image/png",value.value)
+        .subscribe(
+            data  => this.s3SignOk(data,value.value),
+            error => console.log(error));
+    }
     //
   }
     
@@ -223,22 +230,23 @@ propsParams:any;
       return Observable.fromPromise(new Promise((resolve, reject) => {
         var formData: any = new FormData()
         var xhr = new XMLHttpRequest()
+            console.log("befLoop");
           for (var file of files) {
               formData.append("uploads[]", file, file.name)
+              console.log("inLoop");
           }
-          
+          console.log("aftLoop");
           xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
                   if (xhr.status === 200) {
+                      console.log("test",JSON.parse(xhr.response));
                       resolve(JSON.parse(xhr.response))
                   } else {
-                      console.log("rejected");
                       reject(xhr.response)
                   }
               }
           }
-          console.log("this.sharedService.user.token",this.sharedService.user.token);
-          xhr.open("POST", url, true)
+          xhr.open("GET", url, true)
           xhr.setRequestHeader("x-access-token",this.sharedService.user.token);
           xhr.send(formData)
       }));

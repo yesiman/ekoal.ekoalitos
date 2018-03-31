@@ -29,6 +29,7 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'ng2-ckeditor'
   /** @cli-barrel */
 ];
 
@@ -45,7 +46,8 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
+    'main': 'main.js',
+    'ng2-ckeditor': 'npm:ng2-ckeditor'
   },
   packages: cliSystemConfigPackages
 });

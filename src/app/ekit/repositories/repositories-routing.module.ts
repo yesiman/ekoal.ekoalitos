@@ -32,6 +32,13 @@ const routes: Routes = [
         data: {
           title: 'Liste'
         }
+      },
+      {
+        path: 'list/:projectKey',
+        component: ReposListComponent,
+        data: {
+          title: 'Liste'
+        }
       }
     ]
   }

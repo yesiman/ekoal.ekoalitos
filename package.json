@@ -52,6 +52,7 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "moment": "2.18.1",
     "ng2-charts": "1.5.0",
+    "ng2-ckeditor": "^1.2.0",
     "ng2-cookies": "^1.0.12",
     "promise-polyfill": "7.0.0",
     "protractor": "5.1.1",

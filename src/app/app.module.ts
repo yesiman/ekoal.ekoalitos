@@ -8,11 +8,12 @@ import { CoreUIAppComponent } from '../app/core-ui.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
 
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 import { LaddaModule } from 'angular2-ladda';
@@ -21,6 +22,7 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { MenuGroupComponent } from './shared/menu-group.component';
+
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 // Layouts
@@ -31,6 +33,7 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import { SharedService } from './shared/services/shared.service';
 import { CookieService } from 'ng2-cookies';
 import { ReposService } from 'app/ekit/repositories/services/repositories.service';
+import { FormsModule } from '@angular/forms';
  
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -47,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
           deps: [HttpClient]
       }}),
     NgbModule.forRoot(),LaddaModule,
-    ChartsModule,HttpModule,FormsModule,
+    ChartsModule,HttpModule
   ],
   declarations: [
     AppComponent,
@@ -59,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    MenuGroupComponent
+    MenuGroupComponent,
   ],
   providers: [{
     provide: LocationStrategy,

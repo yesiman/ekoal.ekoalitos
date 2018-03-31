@@ -47,7 +47,8 @@ export class FullLayoutComponent implements OnInit {
   {
     var it = { id:1,lib:"Projets",childs:[],routeMasterAdd:"/projects/edit"};
     data.items.forEach(element => {
-      it.childs.push(this.layoutService.getStdMenuItemChilds(element._id,element.lib,"icon-layers","#f86c6b","/prototypes/edit","/prototypes/list","/project/"  + element._id,false));  
+      console.log(element);
+      it.childs.push(this.layoutService.getStdMenuItemChilds(element._id,element.lib,"icon-layers","#f86c6b","/prototypes/edit","/prototypes/list","/projects/dash/"  + element._id,false));  
     });
     this.menuItems.push(it);
     it = { id:2,lib:"Administration",childs:[],routeMasterAdd:null };

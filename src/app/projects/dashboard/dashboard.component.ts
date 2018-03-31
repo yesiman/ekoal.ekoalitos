@@ -1,35 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-
-
-import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/fromPromise';
-
-import { ProjectsDashboardService } from './services/dashboard.service';
 import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   templateUrl: 'dashboard.component.html',
-  providers: [ ProjectsDashboardService ]
+  providers: [ ]
 })
 export class ProjectsDashboardComponent implements OnInit {
 
   private pkey:string;
 
-  constructor(private projectsDashboardService:ProjectsDashboardService,private route: ActivatedRoute) {
-    
+  constructor(private route: ActivatedRoute,private router: Router, public shar:SharedService) {
+    this.route
+        .params
+        .subscribe(params => {
+            this.pkey = params['projectKey'];
+        });
+      this.shar.currentProject = {id:this.pkey}; 
   }
 
   ngOnInit(): void {
-    this.route
-      .queryParams
-      .subscribe(params => {
-          this.pkey = params['pkey'];
-          alert(this.pkey);
-      });
+
+    
     //load poject aggreation counts
     
+  }
+  showRepo(repo) {
+    
+    this.router.navigate(['/'+repo+'/list/']);
+
   }
 
 }

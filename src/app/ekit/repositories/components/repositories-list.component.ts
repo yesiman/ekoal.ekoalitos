@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {URLSearchParams, QueryEncoder,RequestOptions} from '@angular/http';
 import { ReposService } from '../services/repositories.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   templateUrl: 'repositories-list.component.html',
@@ -19,7 +20,8 @@ export class ReposListComponent implements OnInit {
       collectionSize:0,
       currentPage:1
     };
-  private filters = {
+    projectKey:String;
+  private filters:any = {
     text:""
   };
   gab:any = {
@@ -33,8 +35,13 @@ export class ReposListComponent implements OnInit {
     editable:true
   }
   //
-  constructor(private reposService:ReposService,private router: Router) {
-    
+  constructor(private reposService:ReposService,private router: Router,private route: ActivatedRoute,public shar:SharedService) {
+    this.route
+        .params
+        .subscribe(params => {
+            this.projectKey = params['projectKey'];
+        });
+      
   }
   //
   onPageChange(event){
@@ -91,6 +98,7 @@ export class ReposListComponent implements OnInit {
       canExport:true,
       editable:true
     }
+    this.shar.currentRepo = this.params.repoName;
     this.loadPage(this.filters);
   }
 }
