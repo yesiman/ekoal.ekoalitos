@@ -1,4 +1,6 @@
 import { Component,Input } from '@angular/core';
+import { ReposService } from '../ekit/repositories/services/repositories.service';
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'widgetprojectdash',
@@ -6,7 +8,7 @@ import { Component,Input } from '@angular/core';
       <div class="card">
         <div class="card-block p-1 clearfix">
           <i class="{{icon}} {{class}} p-1 font-2xl mr-1 float-left"></i>
-          <div class="h5 text-primary mb-0 mt-h">0</div>
+          <div class="h5 text-primary mb-0 mt-h">{{count}}</div>
           <div class="text-muted text-uppercase font-weight-bold font-xs">{{lib}}</div>
         </div>
         <div class="card-footer px-1 py-h">
@@ -22,9 +24,26 @@ export class WidgetProjectDashComponent {
   @Input() lib: string;
   @Input() repo: string;
   @Input() projectKey: string;
+  count: number=0;
+  private filters:any = {
+    text:""
+  };
 
-  constructor() {
+  constructor(private reposService:ReposService,public sharedService:SharedService) {
     
   }
   //
+  dataLoaded(datas)
+  {
+    this.count = datas.count;
+  }
+  //
+  ngOnInit(): void {
+      this.filters.project = this.projectKey;
+   
+    this.reposService.getCount(this.repo, {filters:this.filters})
+        .subscribe(
+          data  => this.dataLoaded(data),
+          error =>  console.log(error));
+  }
 }

@@ -7,15 +7,28 @@
     margin-left: 5px;
 }
 .nav-link{
-    font-size: 12px;
+    font-size: $font-size-base;
 }
 .vizLayout{
     padding: 0 !important;
     background-color: #333333;
 }
+
+
+
+.nav-item.nav-dropdown.open{
+    .nav-link.nav-dropdown-toggle
+    {
+        color: #fff !important;
+    }
+    .nav-link.active{
+        color: #fff !important;
+    }
+}
+
 .nav-link.nav-dropdown-toggle
 {
-    font-size: 12px;
+    font-size: $font-size-base;
 }
 
 .card-actions div {

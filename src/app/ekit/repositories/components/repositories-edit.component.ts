@@ -73,7 +73,7 @@ propsParams:any;
             .subscribe(
                 data  => {
                     this.item = data;
-                    this.propsNb = this.item.props.length;
+                    //this.propsNb = this.item.props.length;
                     this.initPrototypeMode(this.item.props);
                     if (this.params.repoName == 'objects')
                     {
@@ -258,6 +258,16 @@ propsParams:any;
     //this.makeFileRequest(this.sharedService.apiBasUrl + "awsbucket/signs3",null);
     //console.log(this.item);
     this.saving = true;
+    if(this.sharedService.currentProject) {
+        if (this.item.projects)
+        {
+            //TODO IF NOT CONTAIN
+            this.item.projects.push(this.sharedService.currentProject._id);
+        }
+        else {
+            this.item.projects = [this.sharedService.currentProject._id];
+        }
+    }
     //ID MODE PROTOTYPE
     if (this.params.repoName == 'prototypes')
     {

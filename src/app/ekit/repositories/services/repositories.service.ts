@@ -14,13 +14,23 @@ export class ReposService {
                     .catch(this.handleError);
   }
   add(repoName,data): Observable<any> {
-    return this.http.post(this.sharedService.apiBasUrl + "repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
+    return this.http.put(this.sharedService.apiBasUrl + "repos/add/" + repoName, data,this.sharedService.getHttpHeaders())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  link(repoName,objectId,data): Observable<any> {
+    return this.http.post(this.sharedService.apiBasUrl + "repos/doLinks/" + repoName + "/" + objectId, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getAll(repoName,page,data): Observable<any[]> {
     console.log(data);
     return this.http.post(this.sharedService.apiBasUrl + "repos/" + repoName + "/"+page+"/10", data,this.sharedService.getHttpHeaders())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  getCount(repoName,data): Observable<any[]> {
+    return this.http.post(this.sharedService.apiBasUrl + "repos/count/" + repoName, data,this.sharedService.getHttpHeaders())
                     .map(this.extractData)
                     .catch(this.handleError);
   }

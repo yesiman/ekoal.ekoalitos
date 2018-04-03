@@ -117,7 +117,7 @@
         }
 
         &.active {
-          color: $sidebar-nav-link-active-color;
+          color: #fff;
           background: $sidebar-nav-link-active-bg;
           @include borders($sidebar-nav-link-active-borders);
 
@@ -167,7 +167,7 @@
 
       &.nav-dropdown {
         &.open {
-          background: $sidebar-nav-dropdown-bg;
+          background: $mBlue;
           @include borders($sidebar-nav-dropdown-borders);
           @if $enable-sidebar-nav-rounded {
             border-radius: $border-radius;
@@ -175,6 +175,7 @@
           > ul, > ol {
             // display: inline;
             max-height: 1000px;
+            background: #d3d3d3;
           }
 
           a.nav-link {
@@ -330,7 +331,7 @@
 
           &.nav-dropdown {
             &.open {
-              background: $sidebar-nav-link-active-bg;
+              background: $mBlue;
               > a.nav-link i {
                 color: $sidebar-nav-link-active-icon-color;
               }

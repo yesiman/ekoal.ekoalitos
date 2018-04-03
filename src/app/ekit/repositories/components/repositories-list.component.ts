@@ -32,7 +32,8 @@ export class ReposListComponent implements OnInit {
     checkable:false,
     canImport:true,
     canExport:true,
-    editable:true
+    editable:true,
+    removable:true
   }
   //
   constructor(private reposService:ReposService,private router: Router,private route: ActivatedRoute,public shar:SharedService) {
@@ -91,14 +92,17 @@ export class ReposListComponent implements OnInit {
       data: {
           repo:this.params.repoName,
           props:this.propsList,
-          proto:"x"
+          proto:"x",
+          datas:(this.shar.currentProject?this.shar.currentProject[this.params.repoName]:null)
       },
       checkable:false,
       canImport:true,
       canExport:true,
-      editable:true
+      editable:true,
+    removable:true
     }
     this.shar.currentRepo = this.params.repoName;
-    this.loadPage(this.filters);
+    console.log((this.shar.currentProject?(this.shar.currentProject[this.params.repoName]?this.shar.currentProject[this.params.repoName]:this.shar.currentProject._id):null));
+    //this.loadPage(this.filters);
   }
 }

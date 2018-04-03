@@ -33,7 +33,7 @@ export class ListObjectsComponent implements OnInit {
         text:""
       };
       //
-  constructor(private reposService:ReposService,private router: Router,private sharedService:SharedService,
+  constructor(private reposService:ReposService,private router: Router,public sharedService:SharedService,
     private route: ActivatedRoute,private modalService: NgbModal) {
     
   }
@@ -42,10 +42,10 @@ export class ListObjectsComponent implements OnInit {
     //this.params = this.reposService.getStdMenuItemChildsParams(this.router.url,"list");
     //this.propsList = this.params.props.filter(p => p.showList === true);
     //A LINITIALISATUION ON BORNE SUR PROJET
-    if (this.projectKey)
+    /*if (this.projectKey)
      {
         this.filters.project = this.projectKey;
-     }
+     }*/
     this.loadPage();
   }
   onPageChange(event){
@@ -72,28 +72,24 @@ export class ListObjectsComponent implements OnInit {
   //
   loadPage()
   {
-    /*if (this.projectKey) {
-      alert(this.projectKey);
+    if(this.sharedService.currentProject) {
       this.filters.project = this.projectKey;
-    }*/
-    if (this.gabIn.data.datas)
-    {
-      //IDs GIVEN BY PARENT
-      //LOad from ids and bind
-      console.log("this.gabIn",this.gabIn);
-      this.filters.ids = this.gabIn.data.datas;
-      this.reposService.getAll(this.gabIn.data.repo,this.tabOptions.currentPage, {filters:this.filters})
-        .subscribe(
-          data  => this.dataPageLoaded(data),
-          error =>  console.log(error));
     }
     else {
-      
-      this.reposService.getAll(this.gabIn.data.repo,this.tabOptions.currentPage, {filters:this.filters})
+      if (this.gabIn.data.datas)
+      {
+        //IDs GIVEN BY PARENT
+        //LOad from ids and bind
+        console.log("this.gabIn",this.gabIn);
+        this.filters.ids = this.gabIn.data.datas;
+      }
+    }
+    
+    
+    this.reposService.getAll(this.gabIn.data.repo,this.tabOptions.currentPage, {filters:this.filters})
         .subscribe(
           data  => this.dataPageLoaded(data),
           error =>  console.log(error));
-    }
   }
   //
   //
@@ -125,7 +121,11 @@ export class ListObjectsComponent implements OnInit {
   import() {
 
     //SI DANS PROJET ALORS ON BORNE PAS DESSUS POUR ACC7S A LIMPORTATION DES OBJETS DE LUSER
-    this.filters.project = null;
+    /*if (this.projectKey)
+     {
+      this.filters.project = null;
+
+     }*/
 
 
     this.modalService.open(ModRepoListComponent).result.then((result) => {
@@ -138,7 +138,21 @@ export class ListObjectsComponent implements OnInit {
         this.gabIn.data.datas = this.gabIn.data.datas.concat(result);
       }
       
-      this.loadPage();
+      if (this.projectKey)
+     {
+        this.sharedService.currentProject[this.gabIn.data.repo] = this.gabIn.data.datas;
+        //UPADTE PROJ
+
+//ERROR A FAIRE AU NIVEAU OBJETS
+
+        this.reposService.link(this.gabIn.data.repo,this.projectKey, this.gabIn.data.datas)
+          .subscribe(
+          data  => this.loadPage(),
+          error => console.log("projects not saved:",error));
+     }
+    
+      
+      
     }, (reason) => {  
       console.log(reason);
     });
