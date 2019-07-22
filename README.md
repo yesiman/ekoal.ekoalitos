@@ -1,7 +1,7 @@
 Dans le wiki sont toutes les infos pour utiliser/deployer ekit os
 
 **1. Migration ekoality**<br/>
-&nbsp;[[1.1 Etat des lieux|1.1 project-state ]]<br/>
+&nbsp;[1.1 Etat des lieux]<br/>
 &nbsp;[[1.2 Version 1 (2011/2018)|1.2 Version 1 (2011/2018)]]<br/>
 &nbsp;[[1.3 Version Open source|1.3 Version Open source]]<br/>
 &nbsp;[[1.4 Choix techniques|1.4 Choix techniques]]<br/>
